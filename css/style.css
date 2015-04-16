@@ -1,0 +1,25 @@
+/*
+    Here, styling specifications are defined
+    We are going to link all our pages to a common stylesheet: style.css.
+    
+    We aren't putting a lot of focus onto style at the moment.
+    This project is more purpose based, but when style becomes relevent,
+    it will be put here
+*/
+#login {
+    text-align:center;
+}
+
+#tempText {
+    text-align:center;
+    padding-top:250px;
+}
+
+#ticketInfo {
+    text-align:center;
+}
+
+#title {
+    text-align:center;
+    text-decoration:underline;
+}
