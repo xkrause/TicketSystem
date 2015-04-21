@@ -1,0 +1,10 @@
+<First log - Validation - April 18>
+- Added a Submit button to link Login to Ticket Page.
+- Change "value" to "placeholder" attributes in the input boxes for easy testing.
+- Validation for Log in Page:
+	+ Username and password can't be blank.
+	+ Username can't have special characters.
+	+ Password is 8 character long.
+	+ Password consists of upper and lower-case characters.
+	+ Password has a special character.
+- Password is intentionally NOT encrypted for testing purpose.

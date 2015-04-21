@@ -1,6 +1,6 @@
 <!--This is the first page that will be seen by the user
     regardless of their level of hierarchy.
-    
+
     The user will be prompted to login with their given
     credentials
 -->
@@ -14,21 +14,99 @@
 </head>
 
 <body>
-    <!--Putting the login credentials in a div for styling purposes-->
-    <div id="login">
-    <input type="text" value="Username"></input>
-    <br>
-    <input type="text" value="Password"></input>
-    <script type="text/javascript">
-    var Password;
-    if (Password.length < 8 || Password.length > 8)
-    {
-        //set some "block" here
-    }
-    </script>
-    </div>
+<!--Putting the login credentials in a div for styling purposes-->
+   <!-- <form method="POST" action="form-handler" onsubmit="return checkForm(this);">-->
+   <form action="ticket.html"
+    	<div id="login">
+	    <input type="text" required placeholder = "Username" pattern="\w+"
+		title="Special characters are not allowed">
+	    </input>
+		<br> <br>
+			
+	    <input type="text" required placeholder = "Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}"
+		title="Password must be exactly 8 characters in length and consists of at least one Upper and lowercase characters, number and special character.">	    
+	    </input>
+		<br> <br>
+			
+	    <input type="submit" value="Submit">
+	</div>
+    </form>
     <!--Setting id for temporary home page text-->
     <h1 id="tempText">This is the home page <br> Styling will be added
         later</h1>
 </body>
 </html>
+
+<!-- VALIDATION -->
+<script type="text/javascript">
+    // JK. Use HTML validations, no need for scripts. Keep it there just in case.
+    /*
+ function checkForm(form)
+	{
+	    var re;
+	    var check;
+	    
+	    //Username
+	    if(form.Username.value == "") {
+	      alert("Error: Username cannot be blank!");
+	      form.Username.focus();
+	      return false;
+	    }
+
+	    re = /^\w+$/;
+	    if(!re.test(form.Username.value)) {
+	      alert("Error: Username must contain only letters, numbers and underscores!");
+	      form.Username.focus();
+	      return false;
+	    }
+
+	    //Password
+	       if(form.Password.value == "") {
+	      alert("Error: Password cannot be blank!");
+	      form.Password.focus();
+	      return false;
+	       }
+	       
+	      if(form.Password.value.length != 8) {
+	        alert("Error: Password must be exactly 8 characters!");
+	        form.Password.focus();
+	        return false;
+	      }
+
+	      if(form.Password.value == form.username.value) {
+	        alert("Error: Password must be different from Username!");
+	        form.Password.focus();
+	        return false;
+	      }
+	      re = /[0-9]/;
+	      if(!re.test(form.Password.value)) {
+	        alert("Error: password must contain at least one number (0-9)!");
+	        form.Password.focus();
+	        return false;
+	      }
+	      re = /[a-z]/;
+	      if(!re.test(form.Password.value)) {
+	        alert("Error: password must contain at least one lowercase letter (a-z)!");
+	        form.Password.focus();
+	        return false;
+	      }
+	      re = /[A-Z]/;
+	      if(!re.test(form.Password.value)) {
+	        alert("Error: password must contain at least one uppercase letter (A-Z)!");
+	        form.Password.focus();
+	        return false;
+	      }
+	      
+	     else {
+		return true;
+	    }
+	    
+	    
+	}
+	// Sigh. All this typing...
+*/
+</script>
+
+
+
+
