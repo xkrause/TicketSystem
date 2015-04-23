@@ -3,8 +3,36 @@
 <html>
 <head>
     <title>Ticket</title>
-    <!--Linking to the stylesheet-->
+    <!--Linking to the stylesheet and jQuery library-->
     <link rel="stylesheet" href="css/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        /*
+         * This function will allow for multiple
+         * serial number fields to be added or
+         * removed if multiple computers are
+         * having the same problems.
+         * This example was obtained from http://www.sanwebe.com/2013/03/addremove-input-fields-dynamically-with-jquery/comment-page-1
+         */
+        $(document).ready(function(){
+            var max_fields = 10; //maximum of 10 serial numbers (THIS CAN BE CHANGED LATER)
+            var wrapper = $(".input_fields_wrap"); //wrapping the fields
+            var add_button = $(".add_field_button"); //add serial number button
+            
+            var x = 1; //field counter variable
+            $(add_button).click(function(e){
+                e.preventDefault();
+                if (x < max_fields) { //if current serial number field count is less than 10, add another field and increase counter by 1
+                    x++;
+                    //below, this will remove a serial number input field
+                $(wrapper).append('<div><input type="text" id="serial" value="Serial Number"/><a href="#" class="remove_field">Remove</a></div>');
+            }
+        });
+              $(wrapper.on("click",".remove_field", function(e){
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+              }))
+        });
+    </script>
 </head>
 
 <body>
@@ -12,18 +40,25 @@
     <h2 id="title">Ticket Form</h2>
     <!--putting the form into a div for styling purposes-->
     <div id="ticketInfo">
-        <input type="text" value="Problem"></input>
-        <input type="text" value="Location"></input>
+        <input type="text" placeholder="Problem"></input>
+        <input type="text" placeholder="Location"></input>
         <br>
-        <input type="text" value="Serial Number"></input>
+            
+            <div -d="serial"> <!--Putting the "add fields" in a div, in case we want to further style it-->
+                <!--below, the "add a serial number field" button-->
+                <div class="input_fields_wrap">
+                    <button class="add_field_button">Add A field</button>
+                    <div><input type="text" id="serial" placeholder="Serial Number"></div>
+                </div>
+            </div>
+                
         <!--Adding a dropdown menu for priority level-->
         <select>
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
         </select>
-        <h1 id="tempText">This is where the ticket submitter will fill
-                out the form.</h1>
+        <h1 id="tempText">This is where the ticket submitter will fill out the form.</h1>
     </div>
 
 </body>

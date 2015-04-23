@@ -8,3 +8,8 @@
 	+ Password consists of upper and lower-case characters.
 	+ Password has a special character.
 - Password is intentionally NOT encrypted for testing purpose.
+
+4-23-2015 <ADDING FUNCTIONALITY>
+additional serial number fields can be added or removed-10 fields max
+started working on the technician landing page
+	technician can link directly to the ticket submission form
