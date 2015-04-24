@@ -7,19 +7,31 @@
     it will be put here
 */
 #login {
-    text-align:center;
+    text-align: center;
 }
 
 #tempText {
-    text-align:center;
-    padding-top:250px;
+    text-align: center;
+    padding-top: 250px;
 }
 
 #ticketInfo {
-    text-align:center;
+    text-align: center;
 }
 
 #title {
     text-align:center;
     text-decoration:underline;
+}
+
+.green {
+    background: green;
+}
+    
+.orange {
+    background: orange;
+}
+
+.red {
+    background: red;
 }

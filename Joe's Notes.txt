@@ -12,4 +12,8 @@
 4-23-2015 <ADDING FUNCTIONALITY>
 additional serial number fields can be added or removed-10 fields max
 started working on the technician landing page
-	technician can link directly to the ticket submission form
+	-technician can link directly to the ticket submission form
+
+4-24-2015 <COLOR CODING PRIORITIES>
+color coded the priority dropdown menu.
+	-Need to start on server side validation

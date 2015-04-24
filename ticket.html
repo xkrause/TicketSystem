@@ -32,6 +32,15 @@
                 e.preventDefault(); $(this).parent('div').remove(); x--;
               }))
         });
+        
+        //Color coding the priority level dropdown menu
+        //this example was obtained from http://stackoverflow.com/questions/16521565/html-select-with-different-background-color-for-every-option-that-works-properly
+        function colorFunction() {
+            var selected = document.getElementById("priority"),
+            color = selected.options[selected.selectedIndex].className;
+            selected.className = color;
+            selected.blur();
+        }
     </script>
 </head>
 
@@ -53,10 +62,10 @@
             </div>
                 
         <!--Adding a dropdown menu for priority level-->
-        <select>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
+        <select id="priority" onchange = "colorFunction()">
+            <option class="green" value="Low">Low</option>
+            <option class="orange" value="Medium">Medium</option>
+            <option class="red" value="High">High</option>
         </select>
         <h1 id="tempText">This is where the ticket submitter will fill out the form.</h1>
     </div>
