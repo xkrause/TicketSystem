@@ -1,6 +1,9 @@
 <?php
     require 'dp.php';
     
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    
         //estalish connection with database OR print error message
         try {
             $dbh = new PDO("mysql:host=$hostname;
@@ -12,7 +15,7 @@
         
         //attach posted values to variables for validation
                     //just realized we need to add a time stamp to the database
-        $firsname = $_POST['fname'];
+        $firstname = $_POST['fname'];
         $lastName = $_POST['lname'];
         $urgency = $_POST['urgency'];
         $catagories = " ";
@@ -22,10 +25,10 @@
         
         $checks = 0;
         
-        if($checks = 0)
+        if($checks == 0)
         {
-            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`fname`,`lname`,`urgency`,`catagories`,`description`,`sid`,`domain`)
-            VALUES (:firstname, lastname, :urgency, :catagories, :description, :sid, :domain)";
+            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`firstname`, `lastname`, `urgency`, `catagories`, `description`, `sid`, `domain`)
+            VALUES (:firstname, :lastname, :urgency, :catagories, :description, :sid, :domain)";
             
             //prepares the sql statment
             $statement = $dbh->prepare($sql);
@@ -34,7 +37,7 @@
             $statement->bindParam(':firstname', $firstName, PDO::PARAM_STR);
             $statement->bindParam(':lastname', $lastName, PDO::PARAM_STR);
             $statement->bindParam(':urgency', $urgency, PDO::PARAM_STR);
-            //$statement->bindParam(':catagories', $catagories, PDO::PARAM_STR);
+            $statement->bindParam(':catagories', $catagories, PDO::PARAM_STR);
             $statement->bindParam(':description', $description, PDO::PARAM_STR);
             $statement->bindParam(':sid', $sid, PDO::PARAM_STR);
             $statement->bindParam(':domain', $domain, PDO::PARAM_STR);
