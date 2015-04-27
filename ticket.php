@@ -15,7 +15,7 @@
         
         //attach posted values to variables for validation
                     //just realized we need to add a time stamp to the database
-        $firstname = $_POST['fname'];
+        $firstName = $_POST['fname'];
         $lastName = $_POST['lname'];
         $urgency = $_POST['urgency'];
         $catagories = " ";
@@ -27,8 +27,8 @@
         
         if($checks == 0)
         {
-            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`firstname`, `lastname`, `urgency`, `catagories`, `description`, `sid`, `domain`)
-            VALUES (:firstname, :lastname, :urgency, :catagories, :description, :sid, :domain)";
+            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`firstname`, `lastname`, `urgency`, `description`, `sid`, `domain`)
+            VALUES (:firstname, :lastname, :urgency, :description, :sid, :domain)";
             
             //prepares the sql statment
             $statement = $dbh->prepare($sql);
@@ -37,9 +37,9 @@
             $statement->bindParam(':firstname', $firstName, PDO::PARAM_STR);
             $statement->bindParam(':lastname', $lastName, PDO::PARAM_STR);
             $statement->bindParam(':urgency', $urgency, PDO::PARAM_STR);
-            $statement->bindParam(':catagories', $catagories, PDO::PARAM_STR);
+            //->bindParam(':catagories', $catagories, PDO::PARAM_INT);
             $statement->bindParam(':description', $description, PDO::PARAM_STR);
-            $statement->bindParam(':sid', $sid, PDO::PARAM_STR);
+            $statement->bindParam(':sid', $sid, PDO::PARAM_INT);
             $statement->bindParam(':domain', $domain, PDO::PARAM_STR);
             
             //performs the sql statment writing to the database
