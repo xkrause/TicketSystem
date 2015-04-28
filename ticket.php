@@ -24,13 +24,14 @@
         $description = $_POST['description'];
         $sid = $_POST['sid'];
         $domain = $_POST['domain'];
+        $Email = $_POST['email'];
         
         $checks = 0;
         
         if($checks == 0)
         {
-            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`firstname`, `lastname`, `urgency`, `description`, `sid`, `domain`)
-            VALUES (:firstname, :lastname, :urgency, :description, :sid, :domain)";
+            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`firstname`, `lastname`, `urgency`, `description`, `sid`, `domain`, `email`)
+            VALUES (:firstname, :lastname, :urgency, :description, :sid, :domain, :email)";
             
             //prepares the sql statment
             $statement = $dbh->prepare($sql);
@@ -43,6 +44,7 @@
             $statement->bindParam(':description', $description, PDO::PARAM_STR);
             $statement->bindParam(':sid', $sid, PDO::PARAM_INT);
             $statement->bindParam(':domain', $domain, PDO::PARAM_STR);
+            $statement->bindParam(':email', $Email, PDO::PARAM_STR);
             
             //performs the sql statment writing to the database
             $statement->execute();
@@ -105,6 +107,7 @@
             <input type="text" placeholder="Last Name" name="lname"></input>
             <br>
             <input type="text" placeholder="Problem" name="description"></input>
+            <input type="text" placeholder="Email" name="Email"></input>
             <!--
             at present we don't have a matching database field
             <input type="text" placeholder="Location"></input>-->
