@@ -3,7 +3,9 @@
     
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
-    
+        if ($_POST)
+        {
+        //adding a comment here for no reason at all
         //estalish connection with database OR print error message
         try {
             $dbh = new PDO("mysql:host=$hostname;
@@ -45,6 +47,7 @@
             //performs the sql statment writing to the database
             $statement->execute();
         }
+        }
 ?>
 
 <head>
@@ -75,7 +78,8 @@
             }
         });
               $(wrapper.on("click",".remove_field", function(e){
-                e.preventDefault(); $(this).parent('div').remove(); x--;
+                e.preventDefault(); $(this).parent('div').remove();
+                x--;
               }))
         });
         
@@ -127,7 +131,7 @@
                 <option value="Staff">Staff</option>
                 <option value="Faculty">Faculty</option>
             </select>
-            <input type="number" id="studentId" name="sid"></input>
+            <input type="number" id="studentId" name="sid" placeholder="SID"></input>
             <br>
             <input name="submit" type="submit" value="submit">
         </div>
