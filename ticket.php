@@ -24,15 +24,15 @@
         $description = $_POST['description'];
         $sid = $_POST['sid'];
         $domain = $_POST['domain'];
-        $Email = $_POST['email'];
-        $Serial = $_POST['serial'];
+        $email = $_POST['email'];
+        //$Serial = $_POST['serial'];
         
         $checks = 0;
         
         if($checks == 0)
         {
-            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`firstname`, `lastname`, `urgency`, `description`, `sid`, `domain`, `email`, `serial`)
-            VALUES (:firstname, :lastname, :urgency, :description, :sid, :domain, :email, :serial)";
+            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`firstname`, `lastname`, `urgency`, `description`, `sid`, `domain`, `email`)
+            VALUES (:firstname, :lastname, :urgency, :description, :sid, :domain, :email)";
             
             //prepares the sql statment
             $statement = $dbh->prepare($sql);
@@ -45,8 +45,8 @@
             $statement->bindParam(':description', $description, PDO::PARAM_STR);
             $statement->bindParam(':sid', $sid, PDO::PARAM_INT);
             $statement->bindParam(':domain', $domain, PDO::PARAM_STR);
-            $statement->bindParam(':email', $Email, PDO::PARAM_STR);
-            $statement->bindParam(':serial', $Serial, PDO::PARAM_STR);
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+            //$statement->bindParam(':serial', $Serial, PDO::PARAM_STR);
             
             //performs the sql statment writing to the database
             $statement->execute();
@@ -117,19 +117,19 @@
             <input type="text" placeholder="Last Name" name="lname"></input>
             <br>
             <input type="text" placeholder="Problem" name="description"></input>
-            <input type="text" placeholder="Email" name="Email"></input>
+            <input type="text" placeholder="Email" name="email"></input>
             <!--
             at present we don't have a matching database field
             <input type="text" placeholder="Location"></input>-->
             <br>
             
-                <div id="serial">
+                <!--<div id="serial">
                     <!--Putting the "add fields" in a div-->
-                    <div class="input_fields_wrap">
+                    <!--<div class="input_fields_wrap">
                         <button class="add_field_button">Add A field</button>
-                        <div><input type="text" id="serial" placeholder="Serial Number"></div>
+                        <div><input type="text" id="serial" placeholder="Serial Number" name="serial"></div>
                     </div>
-                </div>
+                </div>-->
                     
             <!--Adding a dropdown menu for priority level-->
             <select id="priority" onchange = "colorFunction()" name="urgency">
