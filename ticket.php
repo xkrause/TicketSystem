@@ -22,7 +22,7 @@
         $urgency = $_POST['urgency'];
         $catagories = " ";
         $description = $_POST['description'];
-        $sid = $_POST['sid'];
+        
         $domain = $_POST['domain'];
         $email = $_POST['email'];
         //$Serial = $_POST['serial'];
@@ -31,8 +31,8 @@
         
         if($checks == 0)
         {
-            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`firstname`, `lastname`, `urgency`, `description`, `sid`, `domain`, `email`)
-            VALUES (:firstname, :lastname, :urgency, :description, :sid, :domain, :email)";
+            $sql = "INSERT INTO `craigk_ticket`.`Tickets` (`firstname`, `lastname`, `urgency`, `description`, `domain`, `email`)
+            VALUES (:firstname, :lastname, :urgency, :description, :domain, :email)";
             
             //prepares the sql statment
             $statement = $dbh->prepare($sql);
@@ -43,7 +43,7 @@
             $statement->bindParam(':urgency', $urgency, PDO::PARAM_STR);
             //->bindParam(':catagories', $catagories, PDO::PARAM_INT);
             $statement->bindParam(':description', $description, PDO::PARAM_STR);
-            $statement->bindParam(':sid', $sid, PDO::PARAM_INT);
+            
             $statement->bindParam(':domain', $domain, PDO::PARAM_STR);
             $statement->bindParam(':email', $email, PDO::PARAM_STR);
             //$statement->bindParam(':serial', $Serial, PDO::PARAM_STR);
@@ -143,7 +143,7 @@
                 <option value="Staff">Staff</option>
                 <option value="Faculty">Faculty</option>
             </select>
-            <input type="number" id="studentId" name="sid" placeholder="SID"></input>
+            
             <br>
             <input name="submit" type="submit" value="submit">
         </div>
