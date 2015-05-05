@@ -54,7 +54,7 @@
             //other wise redirect to login.php
             else {
                 $_SESSION['accessLevel'] = "false";
-                echo "log in failed.";
+                //echo "log in failed.";
                 header("Location: login.php"); // Wherever you want the user to go when they fail the login
             }
     }
