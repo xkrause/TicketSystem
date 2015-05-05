@@ -1,4 +1,11 @@
 <?php
+    
+    session_start();
+    //redirect if you do not have the credentials
+    if($_SESSION['accessLevel'] != '1'){
+        header("Location: login.php");
+    }
+
     //this example was obtained from http://www.w3schools.com/php/php_mysql_select.asp
     $username = "craigk_ts";
     $password = "Password02";

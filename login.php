@@ -43,7 +43,7 @@
             if ($count == 1 && $al == "1") {
                 $_SESSION['identity'] = $sqlid;
                 $_SESSION['accessLevel'] = $al;
-                header("Location: tech.php"); 
+                header("Location: techLandaing.php"); 
             }
             //if admin go to admin page
             elseif($count == 1 && $al == "2"){
