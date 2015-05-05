@@ -1,8 +1,8 @@
 <?php
     session_start();
     
-    if($_SESSION['accessLevel'] != 'tech'){
-        header(Location: 'login.php');
+    if($_SESSION['accessLevel'] != '1'){
+        header("Location: login.php");
     }
 ?>
 

@@ -1,8 +1,8 @@
 <?php
     session_start();
     
-    if($_SESSION['accessLevel'] != 'admin'){
-        header(Location: 'login.php');
+    if($_SESSION['accessLevel'] != '2'){
+        header("Location: login.php");
     }
 ?>
 
