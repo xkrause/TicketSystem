@@ -1,5 +1,4 @@
 <?php
-    
     session_start();
     //redirect if you do not have the credentials
     if($_SESSION['accessLevel'] != '1'){
@@ -17,20 +16,25 @@
     
     //check the connection
     if ($conn->connect_error){
-        die("Connection failes: " . $conn->connect_error);
+        die("Connection failed: " . $conn->connect_error);
+    }
+    else{
+        //echo "Success";
     }
     
-    $sql = "SELECT firstname, lastname FROM `craigk_ticket` . `Tickets`";
+    $sql = "SELECT firstname, lastname, urgency, description, email, domain FROM `craigk_ticket` . `Tickets`";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0){
         //output the data of each row
-        while($row = $result->fetch_assoc()){
-            echo "First Name: " . $row['firstname'] . "Last Name: " . $row['lastname'] . "<br>";
+       // while($row = $result->fetch_assoc()){
+          //  echo "First Name: " . $row['firstname'] . " Last Name: " . $row['lastname'] . "<br>";
         }
-    } else {
+    //}
+    else {
         echo "0 results";
     }
+    
     $conn->close();
 ?>
 
@@ -63,26 +67,42 @@
     
     <link type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js">
         
-        <script type="text/javascript" charset="utf-8">
-			$(document).ready(function() {
-				$('#Tickets').dataTable();
-			} );
-		</script>
 </head>
 
 <body>
+    
+    <table id = "craigk_ticket">
+        <thead>
+            <tr><td>First Name</td>
+            <td>Last Name</td>
+            <td>Urgency</td>
+            <td>Description</td>
+            <td>Email</td>
+            <td>Domain</td></tr>
+        </thead>
+        <tbody>
+            <?php foreach($result as $row) { ?>
+                <tr>
+                    <td><?php echo $row['firstname']; ?></td>
+                    <td><?php echo $row['lastname']; ?></td>
+                    <td><?php echo $row['urgency']; ?></td>
+                    <td><?php echo $row['description']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['domain']; ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>    
+    
+    <script>
+        $(document).ready(function(){
+            $('#craigk_ticket').dataTable();
+        });
+    </script>
+    
     <div id="ticketInfo">
-        <h3>List of tickets that have been submitted:</h3>
-        <!--Link to the db here-->
-        <!--something like: if "login" == "correct login"
-        && if primary key != 0, display "x", x++ -->
-        
-        <select>
-            <option value="ticket_1">Ticket 1</option>
-            <option value="ticket_2">Ticket 2</option>
-            <option value="ticket_3">Ticket 3</option>
-        </select>
-        
+        <!--<h3>List of tickets that have been submitted:</h3>-->
+
         <h3>Submit a ticket <a href="ticket.html">here</a></h3>
     </div>
 </body>
