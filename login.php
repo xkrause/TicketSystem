@@ -4,6 +4,8 @@
     require 'dbts.php';
     //Bring in database credentials
     //if a post occored then check the information to see if they get to login
+	
+	//When the Submit button is clicked
     if(isset($_POST['submit']))
     {
         //database connection
@@ -57,7 +59,27 @@
                 //echo "log in failed.";
                 header("Location: login.php"); // Wherever you want the user to go when they fail the login
             }
-    }
+			
+    //This is the VALIDATIONS 
+    //Setting an error alert. Default at blank.
+    $error = "";
+ 
+    //Check for Alphabetic characters only in First name and Last name
+    	if (!ctype_alpha($firstName) || !ctype_alpha($lastName)) {
+            alert("Error! Error!");
+			//$error = '<p class="error"> First and last name should contain characters only. </p>';
+		}
+        
+	//Check for valid emails
+		if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+			$error = '<p class="error"> Please enter a valid email address. </p>';
+		}
+        
+    /*Check for numeric SID and the length
+        if (!ctype_alnum($sid) || strlen($sid) != 9) {
+			$error = '<p class="error"> Please enter your correct SID. </p>';
+		}*/
+}
     
 
 ?>

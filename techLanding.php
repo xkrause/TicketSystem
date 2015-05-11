@@ -25,15 +25,15 @@
     $sql = "SELECT firstname, lastname, urgency, description, email, domain FROM `craigk_ticket` . `Tickets`";
     $result = $conn->query($sql);
     
-    if ($result->num_rows > 0){
+    /*if ($result->num_rows > 0){
         //output the data of each row
-       // while($row = $result->fetch_assoc()){
-          //  echo "First Name: " . $row['firstname'] . " Last Name: " . $row['lastname'] . "<br>";
+        while($row = $result->fetch_assoc()){
+            echo "First Name: " . $row['firstname'] . " Last Name: " . $row['lastname'] . "<br>";
         }
-    //}
+    }
     else {
         echo "0 results";
-    }
+    }*/
     
     $conn->close();
 ?>
@@ -70,6 +70,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     
 	<table id = "craigk_ticket">
 	    <thead>
@@ -94,6 +95,32 @@
     	</tbody>
         </table>
 
+=======
+    <h1 id="adminGreeting">Welcome, Technician!</h1>
+    <table id = "craigk_ticket">
+        <thead>
+            <tr id="label"><td>First Name</td>
+            <td>Last Name</td>
+            <td>Urgency</td>
+            <td>Description</td>
+            <td>Email</td>
+            <td>Domain</td></tr>
+        </thead>
+        <tbody>
+            <?php foreach($result as $row) { ?>
+                <tr>
+                    <td><?php echo $row['firstname']; ?></td>
+                    <td><?php echo $row['lastname']; ?></td>
+                    <td><?php echo $row['urgency']; ?></td>
+                    <td><?php echo $row['description']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['domain']; ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>    
+    
+>>>>>>> origin/master
     <script>
         $(document).ready(function(){
             $('#craigk_ticket').dataTable();
@@ -103,6 +130,6 @@
     <div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
 
-        <h3>Submit a ticket <a href="ticket.html">here</a></h3>
+        <h3>Submit a ticket <a href="ticket.php">here</a></h3>
     </div>
 </body>

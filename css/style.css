@@ -35,3 +35,15 @@
 .red {
     background: red;
 }
+
+#adminGreeting {
+    text-align:center;
+}
+
+thead {
+    background: lightgrey;
+}
+
+#label {
+    text-decoration: underline;
+}
