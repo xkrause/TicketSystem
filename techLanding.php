@@ -25,15 +25,15 @@
     $sql = "SELECT firstname, lastname, urgency, description, email, domain FROM `craigk_ticket` . `Tickets`";
     $result = $conn->query($sql);
     
-    if ($result->num_rows > 0){
+    /*if ($result->num_rows > 0){
         //output the data of each row
-       // while($row = $result->fetch_assoc()){
-          //  echo "First Name: " . $row['firstname'] . " Last Name: " . $row['lastname'] . "<br>";
+        while($row = $result->fetch_assoc()){
+            echo "First Name: " . $row['firstname'] . " Last Name: " . $row['lastname'] . "<br>";
         }
-    //}
+    }
     else {
         echo "0 results";
-    }
+    }*/
     
     $conn->close();
 ?>
@@ -70,10 +70,10 @@
 </head>
 
 <body>
-    
+    <h1 id="adminGreeting">Welcome, Technician!</h1>
     <table id = "craigk_ticket">
         <thead>
-            <tr><td>First Name</td>
+            <tr id="label"><td>First Name</td>
             <td>Last Name</td>
             <td>Urgency</td>
             <td>Description</td>
@@ -103,6 +103,6 @@
     <div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
 
-        <h3>Submit a ticket <a href="ticket.html">here</a></h3>
+        <h3>Submit a ticket <a href="ticket.php">here</a></h3>
     </div>
 </body>

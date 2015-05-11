@@ -22,7 +22,6 @@
         $urgency = $_POST['urgency'];
         $catagories = " ";
         $description = $_POST['description'];
-        
         $domain = $_POST['domain'];
         $email = $_POST['email'];
         //$Serial = $_POST['serial'];
@@ -54,16 +53,45 @@
         
         
         //this example was obtained from http://www.inmotionhosting.com/support/website/sending-email-from-site/using-the-php-mail-function-to-send-emails
-        $to = 'sk8rak@gmail.com';
-        $subject = "Your ticket submission";
+        $to = $_POST['email'];
+        $tech = 'akrause3@mail.greenriver.edu';
+        $subject = "Your ticket has been submitted, and a technician will contact you shortly";
+        $techSubject = "A new ticket has been submitted, check it out http://xanderkrause.greenrivertech.net/techLanding.php";
         $message = 'An email dialog has been created.';
         mail($to, $message, $subject);
+        mail($tech, $message, $techSubject);
         
         }
 ?>
 
 <head>
     <title>Ticket</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
+		
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
+    
+    <style>
+    .error{color: #ff0000;}
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css">
+    <link type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js">
+    
+    <link type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js">
     <!--Linking to the stylesheet and jQuery library-->
     <link rel="stylesheet" href="css/style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -103,6 +131,10 @@
             selected.className = color;
             selected.blur();
         }
+        
+        function confirm() {
+            alert("Your ticket has been submitted and will be seen to shortly");
+        }
     </script>
 </head>
 <!--------------------------------------------------------------------------------------------------------------------------->
@@ -116,7 +148,7 @@
             <input type="text" placeholder="First Name" name="fname"></input>
             <input type="text" placeholder="Last Name" name="lname"></input>
             <br>
-            <input type="text" placeholder="Problem" name="description"></input>
+            <input type="text" placeholder="Problem description" name="description"></input>
             <input type="text" placeholder="Email" name="email"></input>
             <!--
             at present we don't have a matching database field
@@ -145,11 +177,7 @@
             </select>
             
             <br>
-            <input name="submit" type="submit" value="submit">
+            <input name="submit" type="submit" value="Submit" onclick="confirm()">
         </div>
     </form>
-    <div>   
-        <h1 id="tempText">This is where the ticket submitter will fill out the form.</h1>
-    </div>
-
 </body>
