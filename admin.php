@@ -1,4 +1,5 @@
 <?php
+//Joe wuz hier
     session_start();
     
     if($_SESSION['accessLevel'] != '2'){
