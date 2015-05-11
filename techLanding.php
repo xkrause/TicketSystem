@@ -71,29 +71,29 @@
 
 <body>
     
-    <table id = "craigk_ticket">
-        <thead>
-            <tr><td>First Name</td>
-            <td>Last Name</td>
-            <td>Urgency</td>
-            <td>Description</td>
-            <td>Email</td>
-            <td>Domain</td></tr>
-        </thead>
-        <tbody>
-            <?php foreach($result as $row) { ?>
-                <tr>
-                    <td><?php echo $row['firstname']; ?></td>
-                    <td><?php echo $row['lastname']; ?></td>
-                    <td><?php echo $row['urgency']; ?></td>
-                    <td><?php echo $row['description']; ?></td>
-                    <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['domain']; ?></td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>    
-    
+	<table id = "craigk_ticket">
+	    <thead>
+	        <tr><td>First Name</td>
+	        <td>Last Name</td>
+	        <td>Urgency</td>
+	        <td>Description</td>
+	        <td>Email</td>
+	        <td>Domain</td></tr>
+    	</thead>
+    	<tbody>
+    	    <?php foreach($result as $row) { ?>
+    		<tr>
+    		    <td><?php echo $row['firstname']; ?></td>
+    		    <td><?php echo $row['lastname']; ?></td>
+    		    <td><?php echo $row['urgency']; ?></td>
+    		    <td><?php echo $row['description']; ?></td>
+    		    <td><?php echo $row['email']; ?></td>
+    		    <td><?php echo $row['domain']; ?></td>
+    		</tr>
+    	    <?php } ?>
+    	</tbody>
+        </table>
+
     <script>
         $(document).ready(function(){
             $('#craigk_ticket').dataTable();
