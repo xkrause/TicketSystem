@@ -117,7 +117,7 @@
 					title="Please use a valid Green River email address." class="form-control"></input></span>
 	    <br>
             <br>
-	    <span class="col-lg-4 col-lg-offset-4"><input class="form-control" type="text" required placeholder = "Password" name="password" ></input></span>
+	    <span class="col-lg-4 col-lg-offset-4"><input class="form-control" type="text" required placeholder = "Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}"></input></span>
 	    <br>
             <br>
 	    <input type="submit" value="Submit" name="submit" class="btn btn-default">
