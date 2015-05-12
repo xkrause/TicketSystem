@@ -57,7 +57,6 @@
                 //echo "log in failed.";
 			        header("Location: login.php"); // Wherever you want the user to go when they fail the login
             }
-<<<<<<< HEAD
 		
 		//THIS IS THE VALIDATIONS
 		// Variable to check
@@ -67,7 +66,9 @@
 			 echo("Please use your GreenRiver email to as Username.");
 		}
 		
-		if (!empty($_POST['username']) && !empty($_POST['password'])){
+		$userCheck = $_POST['username'];
+		$passCheck = $_POST['password'];
+		if (!empty($userCheck) && !empty($_POST['password'])){
 			/*
 				Conditions:
 				$ = beginning of string
@@ -80,25 +81,24 @@
 				$ = end of the string
 			*/
 			// Email check
-			function emailCheck($_POST['username']) {
-			if((!preg_match_all("/^[a-zA-Z]w+(.w+)*@w+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $_POST["email"]))
-				echo "This is not a valid email<br />";
+			function emailCheck($userCheck) {
+			if(!preg_match_all("/^\"?[\w-_\.]*\"?@greenriver.edu$/", $userCheck)){
+					echo ("This is not a valid email.");
+					return FALSE;
+				}
 			}
-			
+		
 			//Password check		
-			function passCheck($_POST['password']) {
-			if (!preg_match_all('$\S*(?=\S{8})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$', $_POST['password']))
-				echo "This is not a valid password<br />";
+			function passCheck($passCheck) {
+			if (!preg_match_all('$\S*(?=\S{8})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$', $passCheck)){
+					echo ("This is not a valid password.");
+					return FALSE;
+				}
 			}
 		}
 		else
 			echo "Please check your username and password.<br />";
 	}
-=======
-			
-}
->>>>>>> origin/master
-    
 ?>
 
 <head>
@@ -113,8 +113,8 @@
    <!-- <form method="POST" action="form-handler" onsubmit="return checkForm(this);">-->
    <form action="#" method='post'>
     	<div id="login">
-	    <input type="text" required placeholder = "Username"  name="username"  pattern="(\w+).{6,14}"
-					title="Special characters are not allowed. You must have at least 6 characters in length."></input>
+	    <input type="email" required placeholder = "Username"  name="username"
+					title="Please use a valid Green River email address."></input>
 	    <br>
             <br>
 			
