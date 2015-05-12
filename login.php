@@ -24,7 +24,6 @@
             $stmt->bindValue("username", $_POST['username'], PDO::PARAM_STR);
             $stmt->bindValue("password", $_POST['password'], PDO::PARAM_STR);
             $stmt->execute();
-            
             $count = $stmt->fetchColumn();
             
             $sqlid = "select username from `craigk_ticket` . `login` where username = :username";
@@ -58,6 +57,7 @@
                 //echo "log in failed.";
 			        header("Location: login.php"); // Wherever you want the user to go when they fail the login
             }
+<<<<<<< HEAD
 		
 		//THIS IS THE VALIDATIONS
 		// Variable to check
@@ -94,6 +94,10 @@
 		else
 			echo "Please check your username and password.<br />";
 	}
+=======
+			
+}
+>>>>>>> origin/master
     
 ?>
 
@@ -103,7 +107,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <!----------------------------------------------------------------------------------------------->
-<!--I left the javascript off from the original html version so that 
+ 
 <body>
 <!--Putting the login credentials in a div for styling purposes-->
    <!-- <form method="POST" action="form-handler" onsubmit="return checkForm(this);">-->
@@ -123,15 +127,5 @@
 	</div>
     </form>
     <!--Setting id for temporary home page text-->
-    <h1 id="tempText">This is the home page <br> Styling will be added
-        later</h1>
+
 </body>
-                <!--      pattern="(\w+).{6,14}"      this was cut out for testing purposes-->
-		<!--title="Special characters are not allowed. You must have at least 6 characters in length.">-->
-                
-                <!--pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}"--> 
-		<!--title="Password must be exactly 8 characters in length and consists of at least one Upper and lowercase characters, number and special character.">-->
-                
-<?php
-    
-?>

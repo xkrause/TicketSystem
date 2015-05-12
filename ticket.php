@@ -141,43 +141,53 @@
 <body>
 
     <!--Title for the page-->
-    <h2 id="title">Ticket Form</h2>
-    <form method="post" action="#">
-        <!--putting the form into a div for styling purposes-->
-        <div id="ticketInfo">
-            <input type="text" placeholder="First Name" name="fname"></input>
-            <input type="text" placeholder="Last Name" name="lname"></input>
-            <br>
-            <input type="text" placeholder="Problem description" name="description"></input>
-            <input type="text" placeholder="Email" name="email"></input>
-            <!--
-            at present we don't have a matching database field
-            <input type="text" placeholder="Location"></input>-->
-            <br>
-            
-                <!--<div id="serial">
-                    <!--Putting the "add fields" in a div-->
-                    <!--<div class="input_fields_wrap">
-                        <button class="add_field_button">Add A field</button>
-                        <div><input type="text" id="serial" placeholder="Serial Number" name="serial"></div>
-                    </div>
-                </div>-->
+    <img src="images/grcicon.png" alt="greenriver college icon"><span id="title" style="font-size: 3em;">Green River College Online Ticket Form</span>
+    <div class="container">
+        <div class="jumbotron">
+            <form method="post" action="#">
+                <!--putting the form into a div for styling purposes-->
+                <div id="ticketInfo">
+                    <input type="text" placeholder="First Name" name="fname" class="form-control"></input>
+                    <br>
+                    <input type="text" placeholder="Last Name" name="lname" class="form-control"></input>
+                    <br>
+                    <textarea name="description" placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
+                    <br>
+                    <!--<input type="textarea" placeholder="Problem description" name="description"></input>-->
+                    <input type="text" placeholder="Email" name="email" class="form-control"></input>
+                    <br>
+                    <!--
+                    at present we don't have a matching database field
+                    <input type="text" placeholder="Location"></input>-->
                     
-            <!--Adding a dropdown menu for priority level-->
-            <select id="priority" onchange = "colorFunction()" name="urgency">
-                <option class="green" value="Low">Low</option>
-                <option class="orange" value="Medium">Medium</option>
-                <option class="red" value="High">High</option>
-            </select>
-            <!--A dropdown down menu to answer student/staff/faculty-->
-            <select id="Domain" name="domain">
-                <option value="Student">Student</option>
-                <option value="Staff">Staff</option>
-                <option value="Faculty">Faculty</option>
-            </select>
-            
-            <br>
-            <input name="submit" type="submit" value="Submit" onclick="confirm()">
+                        <!--<div id="serial">
+                            <!--Putting the "add fields" in a div-->
+                            <!--<div class="input_fields_wrap">
+                                <button class="add_field_button">Add A field</button>
+                                <div><input type="text" id="serial" placeholder="Serial Number" name="serial"></div>
+                            </div>
+                        </div>-->
+                            
+                    <!--Adding a dropdown menu for priority level-->
+                    <select id="priority" onchange = "colorFunction()" name="urgency" class="form-control">
+                        <option value="-----">Urgency</option>
+                        <option class="green" value="Low">Low</option>
+                        <option class="orange" value="Medium">Medium</option>
+                        <option class="red" value="High">High</option>
+                    </select>
+                    <br>
+                    <!--A dropdown down menu to answer student/staff/faculty-->
+                    <select id="Domain" name="domain" class="form-control">
+                        <option value="-----">Select      Student/Staff/Faculty</option>
+                        <option value="Student">Student</option>
+                        <option value="Staff">Staff</option>
+                        <option value="Faculty">Faculty</option>
+                    </select>
+                    
+                    <br>
+                    <input name="submit" type="submit" value="Submit" onclick="confirm()">
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </body>
