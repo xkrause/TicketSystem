@@ -25,6 +25,8 @@
         $domain = $_POST['domain'];
         $email = $_POST['email'];
         //$Serial = $_POST['serial'];
+		
+		//THIS IS THE VALIDATIONS
         
         $checks = 0;
         
@@ -147,14 +149,16 @@
             <form method="post" action="#">
                 <!--putting the form into a div for styling purposes-->
                 <div id="ticketInfo">
-                    <input type="text" placeholder="First Name" name="fname" class="form-control"></input>
+                    <input type="text" require placeholder="First Name" name="fname" class="form-control" pattern="[A-Za-z]
+						title="First name can only contain characters."></input>
                     <br>
-                    <input type="text" placeholder="Last Name" name="lname" class="form-control"></input>
+                    <input type="text" require placeholder="Last Name" name="lname" class="form-control" pattern="[A-Za-z]
+						title="Last name can only contain characters.></input>
                     <br>
-                    <textarea name="description" placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
+                    <textarea name="description" require placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
                     <br>
                     <!--<input type="textarea" placeholder="Problem description" name="description"></input>-->
-                    <input type="text" placeholder="Email" name="email" class="form-control"></input>
+                    <input type="email" placeholder="Email" name="email" class="form-control"></input>
                     <br>
                     <!--
                     at present we don't have a matching database field

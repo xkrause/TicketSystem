@@ -16,8 +16,7 @@
         } catch (PDOException $e) {
             //echo $e->getMessage();
         }
-        
-        
+		
             // Check if the user name exists. If one result is returned then there are no duplicates and
             // a result. User is then confirmed.
             $sql = "select COUNT(*) from `craigk_ticket`.`login` where username = :username and password = :password";
@@ -56,12 +55,43 @@
             else {
                 $_SESSION['accessLevel'] = "false";
                 //echo "log in failed.";
-                header("Location: login.php"); // Wherever you want the user to go when they fail the login
+			        header("Location: login.php"); // Wherever you want the user to go when they fail the login
             }
-			
-}
-    
-
+		
+		//THIS IS THE VALIDATIONS
+		$userCheck = $_POST['username'];
+		$passCheck = $_POST['password'];
+		if (!empty($userCheck) && !empty($_POST['password'])){
+			/*
+				Conditions:
+				$ = beginning of string
+				\S* = any set of characters
+				(?=\S{8,}) = of at least length 8
+				(?=\S*[a-z]) = containing at least one lowercase letter
+				(?=\S*[A-Z]) = and at least one uppercase letter
+				(?=\S*[\d]) = and at least one number
+				(?=\S*[\W]) = and at least a special character (non-word characters)
+				$ = end of the string
+			*/
+			// Email check
+			function emailCheck($userCheck) {
+			if(!preg_match_all("/^\"?[\w-_\.]*\"?@greenriver.edu$/", $userCheck)){
+					echo ("This is not a valid email.");
+					return FALSE;
+				}
+			}
+		
+			//Password check		
+			function passCheck($passCheck) {
+			if (!preg_match_all('$\S*(?=\S{8})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$', $passCheck)){
+					echo ("This is not a valid password.");
+					return FALSE;
+				}
+			}
+		}
+		else
+			echo "Please check your username and password.<br />";
+	}
 ?>
 
 <head>
@@ -79,12 +109,23 @@
    <!-- <form method="POST" action="form-handler" onsubmit="return checkForm(this);">-->
    <div class="container"><div class="jumbotron">
    <form action="#" method='post'>
+<<<<<<< HEAD
     	<div id="login"><span align="center" ><h2>Login</h2></span>
 	    <span class="col-lg-4 col-lg-offset-4"><input type="text" required placeholder = "Username"  name="username" class="form-control" ></input></span>
 	    <br>
             <br>
 			
 	    <span class="col-lg-4 col-lg-offset-4"><input type="text" required placeholder = "Password" name="password" class="form-control"></input></span>
+=======
+    	<div id="login">
+	    <input type="email" required placeholder = "Username"  name="username"
+					title="Please use a valid Green River email address."></input>
+	    <br>
+            <br>
+			
+	    <input type="text" required placeholder = "Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}"
+			title="Password must be exactly 8 characters in length and consists of at least one Upper and lowercase characters, number and special character."></input>
+>>>>>>> origin/master
 	    <br>
             <br>
 			
