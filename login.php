@@ -68,25 +68,30 @@
     <title>Login</title>
     <!--LINK TO STYLESHEET-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <!----------------------------------------------------------------------------------------------->
  
 <body>
 <!--Putting the login credentials in a div for styling purposes-->
    <!-- <form method="POST" action="form-handler" onsubmit="return checkForm(this);">-->
+   <div class="container"><div class="jumbotron">
    <form action="#" method='post'>
-    	<div id="login">
-	    <input type="text" required placeholder = "Username"  name="username"></input>
+    	<div id="login"><span align="center" ><h2>Login</h2></span>
+	    <span class="col-lg-4 col-lg-offset-4"><input type="text" required placeholder = "Username"  name="username" class="form-control" ></input></span>
 	    <br>
             <br>
 			
-	    <input type="text" required placeholder = "Password" name="password"></input>
+	    <span class="col-lg-4 col-lg-offset-4"><input type="text" required placeholder = "Password" name="password" class="form-control"></input></span>
 	    <br>
             <br>
 			
-	    <input type="submit" value="Submit" name="submit">
+	    <input type="submit" value="Submit" name="submit" class="btn btn-default">
 	</div>
     </form>
+   </div></div>
     <!--Setting id for temporary home page text-->
 
 </body>
