@@ -109,26 +109,15 @@
    <!-- <form method="POST" action="form-handler" onsubmit="return checkForm(this);">-->
    <div class="container"><div class="jumbotron">
    <form action="#" method='post'>
-<<<<<<< HEAD
+
     	<div id="login"><span align="center" ><h2>Login</h2></span>
-	    <span class="col-lg-4 col-lg-offset-4"><input type="text" required placeholder = "Username"  name="username" class="form-control" ></input></span>
+	    <span class="col-lg-4 col-lg-offset-4"><input type="email" required placeholder = "Username"  name="username"
+					title="Please use a valid Green River email address." class="form-control"></input></span>
 	    <br>
             <br>
-			
-	    <span class="col-lg-4 col-lg-offset-4"><input type="text" required placeholder = "Password" name="password" class="form-control"></input></span>
-=======
-    	<div id="login">
-	    <input type="email" required placeholder = "Username"  name="username"
-					title="Please use a valid Green River email address."></input>
+	    <span class="col-lg-4 col-lg-offset-4"><input class="form-control" type="text" required placeholder = "Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}"></input></span>
 	    <br>
             <br>
-			
-	    <input type="text" required placeholder = "Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}"
-			title="Password must be exactly 8 characters in length and consists of at least one Upper and lowercase characters, number and special character."></input>
->>>>>>> origin/master
-	    <br>
-            <br>
-			
 	    <input type="submit" value="Submit" name="submit" class="btn btn-default">
 	</div>
     </form>
@@ -136,3 +125,6 @@
     <!--Setting id for temporary home page text-->
 
 </body>
+<!--
+title="Password must be exactly 8 characters in length and consists of at least one Upper and lowercase characters, number and special character."
+-->
