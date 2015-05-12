@@ -148,7 +148,8 @@
             <input type="text" placeholder="First Name" name="fname"></input>
             <input type="text" placeholder="Last Name" name="lname"></input>
             <br>
-            <input type="text" placeholder="Problem description" name="description"></input>
+            <textarea name="description" placeholder="Please describe the problem. 500 character limit."></textarea>
+            <!--<input type="textarea" placeholder="Problem description" name="description"></input>-->
             <input type="text" placeholder="Email" name="email"></input>
             <!--
             at present we don't have a matching database field

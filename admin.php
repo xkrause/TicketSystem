@@ -94,7 +94,8 @@
 </body>
 <script>
         $(document).ready(function(){
-            $('#craigk_ticket').dataTable();
+            $('#craigk_ticket').dataTable({
+		"order": [[ 6, "desc" ]]});
         });
 	$("#logout").click(function(){
 	    window.location = "logout.php";

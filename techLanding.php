@@ -76,17 +76,19 @@
     <div class="jumbotron">
     <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
-            <tr id="label"><td>First Name</td>
+            <tr id="label">
+	    <td>First Name</td>
             <td>Last Name</td>
             <td>Urgency</td>
             <td>Description</td>
             <td>Email</td>
             <td>Domain</td>
-	    <td>Date Submitted</td></tr>
+	    <td>Date Submitted</td>
+	    </tr>
         </thead>
         <tbody>
             <?php foreach($result as $row) { ?>
-                <tr>
+                <tr> 
                     <td><?php echo $row['firstname']; ?></td>
                     <td><?php echo $row['lastname']; ?></td>
                     <td><?php echo $row['urgency']; ?></td>
@@ -108,8 +110,10 @@
 </body>
 <script>
         $(document).ready(function(){
-            $('#craigk_ticket').dataTable();
-        });
+            $('#craigk_ticket').dataTable( {
+		"order": [[ 6, "desc" ]]
+		});
+	});
 	$("#logout").click(function(){
 	    window.location = "logout.php";
 	});
