@@ -16,8 +16,7 @@
         } catch (PDOException $e) {
             //echo $e->getMessage();
         }
-        
-        
+		
             // Check if the user name exists. If one result is returned then there are no duplicates and
             // a result. User is then confirmed.
             $sql = "select COUNT(*) from `craigk_ticket`.`login` where username = :username and password = :password";
@@ -57,31 +56,45 @@
             else {
                 $_SESSION['accessLevel'] = "false";
                 //echo "log in failed.";
-                header("Location: login.php"); // Wherever you want the user to go when they fail the login
+			        header("Location: login.php"); // Wherever you want the user to go when they fail the login
             }
+		
+		//THIS IS THE VALIDATIONS
+		// Variable to check
+		$emailCheck = "@greenriver.edu";
+		// Validate email
+		if (!filter_var($emailCheck, FILTER_VALIDATE_EMAIL) === true) {
+			 echo("Please use your GreenRiver email to as Username.");
+		}
+		
+		if (!empty($_POST['username']) && !empty($_POST['password'])){
+			/*
+				Conditions:
+				$ = beginning of string
+				\S* = any set of characters
+				(?=\S{8,}) = of at least length 8
+				(?=\S*[a-z]) = containing at least one lowercase letter
+				(?=\S*[A-Z]) = and at least one uppercase letter
+				(?=\S*[\d]) = and at least one number
+				(?=\S*[\W]) = and at least a special character (non-word characters)
+				$ = end of the string
+			*/
+			// Email check
+			function emailCheck($_POST['username']) {
+			if((!preg_match_all("/^[a-zA-Z]w+(.w+)*@w+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $_POST["email"]))
+				echo "This is not a valid email<br />";
+			}
 			
-    //This is the VALIDATIONS 
-    //Setting an error alert. Default at blank.
-    $error = "";
- 
-    //Check for Alphabetic characters only in First name and Last name
-    	if (!ctype_alpha($firstName) || !ctype_alpha($lastName)) {
-            alert("Error! Error!");
-			//$error = '<p class="error"> First and last name should contain characters only. </p>';
+			//Password check		
+			function passCheck($_POST['password']) {
+			if (!preg_match_all('$\S*(?=\S{8})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$', $_POST['password']))
+				echo "This is not a valid password<br />";
+			}
 		}
-        
-	//Check for valid emails
-		if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
-			$error = '<p class="error"> Please enter a valid email address. </p>';
-		}
-        
-    /*Check for numeric SID and the length
-        if (!ctype_alnum($sid) || strlen($sid) != 9) {
-			$error = '<p class="error"> Please enter your correct SID. </p>';
-		}*/
-}
+		else
+			echo "Please check your username and password.<br />";
+	}
     
-
 ?>
 
 <head>
@@ -96,11 +109,13 @@
    <!-- <form method="POST" action="form-handler" onsubmit="return checkForm(this);">-->
    <form action="#" method='post'>
     	<div id="login">
-	    <input type="text" required placeholder = "Username"  name="username"></input>
+	    <input type="text" required placeholder = "Username"  name="username"  pattern="(\w+).{6,14}"
+					title="Special characters are not allowed. You must have at least 6 characters in length."></input>
 	    <br>
             <br>
 			
-	    <input type="text" required placeholder = "Password" name="password"></input>
+	    <input type="text" required placeholder = "Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}"
+			title="Password must be exactly 8 characters in length and consists of at least one Upper and lowercase characters, number and special character."></input>
 	    <br>
             <br>
 			
