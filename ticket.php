@@ -63,6 +63,11 @@
         mail($to, $message, $subject);
         mail($tech, $message, $techSubject);
         
+        //confirmation of submission
+        
+        }
+        function alert(){
+            alert("Your ticket has been submitted and will be seen to shortly");
         }
 ?>
 
@@ -127,16 +132,13 @@
         
         //Color coding the priority level dropdown menu
         //this example was obtained from http://stackoverflow.com/questions/16521565/html-select-with-different-background-color-for-every-option-that-works-properly
-        function colorFunction() {
+        /*function colorFunction() {
             var selected = document.getElementById("priority"),
             color = selected.options[selected.selectedIndex].className;
             selected.className = color;
             selected.blur();
-        }
+        }*/
         
-        function confirm() {
-            alert("Your ticket has been submitted and will be seen to shortly");
-        }
     </script>
 </head>
 <!--------------------------------------------------------------------------------------------------------------------------->
@@ -149,16 +151,16 @@
             <form method="post" action="#">
                 <!--putting the form into a div for styling purposes-->
                 <div id="ticketInfo">
-                    <input type="text" require placeholder="First Name" name="fname" class="form-control" pattern="[A-Za-z]
+                    <input type="text" require placeholder="First Name" name="fname" class="form-control" 
 						title="First name can only contain characters."></input>
                     <br>
-                    <input type="text" require placeholder="Last Name" name="lname" class="form-control" pattern="[A-Za-z]
-						title="Last name can only contain characters.></input>
+                    <input type="text" require placeholder="Last Name" name="lname" class="form-control" 
+						title="Last name can only contain characters."></input>
                     <br>
                     <textarea name="description" require placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
                     <br>
                     <!--<input type="textarea" placeholder="Problem description" name="description"></input>-->
-                    <input type="email" placeholder="Email" name="email" class="form-control"></input>
+                    <input type="email" placeholder="Email" name="email" class="form-control" require></input>
                     <br>
                     <!--
                     at present we don't have a matching database field
@@ -173,7 +175,7 @@
                         </div>-->
                             
                     <!--Adding a dropdown menu for priority level-->
-                    <select id="priority" onchange = "colorFunction()" name="urgency" class="form-control">
+                    <select id="priority"  name="urgency" class="form-control">
                         <option value="-----">Urgency</option>
                         <option class="green" value="Low">Low</option>
                         <option class="orange" value="Medium">Medium</option>
@@ -189,7 +191,7 @@
                     </select>
                     
                     <br>
-                    <input name="submit" type="submit" value="Submit" onclick="confirm()">
+                    <input name="submit" type="submit" value="Submit" onsubmit="alert()">
                 </div>
             </form>
         </div>
