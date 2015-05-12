@@ -25,7 +25,6 @@
             $stmt->bindValue("username", $_POST['username'], PDO::PARAM_STR);
             $stmt->bindValue("password", $_POST['password'], PDO::PARAM_STR);
             $stmt->execute();
-            
             $count = $stmt->fetchColumn();
             
             $sqlid = "select username from `craigk_ticket` . `login` where username = :username";
@@ -60,25 +59,6 @@
                 header("Location: login.php"); // Wherever you want the user to go when they fail the login
             }
 			
-    //This is the VALIDATIONS 
-    //Setting an error alert. Default at blank.
-    $error = "";
- 
-    //Check for Alphabetic characters only in First name and Last name
-    	if (!ctype_alpha($firstName) || !ctype_alpha($lastName)) {
-            alert("Error! Error!");
-			//$error = '<p class="error"> First and last name should contain characters only. </p>';
-		}
-        
-	//Check for valid emails
-		if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
-			$error = '<p class="error"> Please enter a valid email address. </p>';
-		}
-        
-    /*Check for numeric SID and the length
-        if (!ctype_alnum($sid) || strlen($sid) != 9) {
-			$error = '<p class="error"> Please enter your correct SID. </p>';
-		}*/
 }
     
 
@@ -90,7 +70,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <!----------------------------------------------------------------------------------------------->
-<!--I left the javascript off from the original html version so that 
+ 
 <body>
 <!--Putting the login credentials in a div for styling purposes-->
    <!-- <form method="POST" action="form-handler" onsubmit="return checkForm(this);">-->
@@ -108,15 +88,5 @@
 	</div>
     </form>
     <!--Setting id for temporary home page text-->
-    <h1 id="tempText">This is the home page <br> Styling will be added
-        later</h1>
+
 </body>
-                <!--      pattern="(\w+).{6,14}"      this was cut out for testing purposes-->
-		<!--title="Special characters are not allowed. You must have at least 6 characters in length.">-->
-                
-                <!--pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}"--> 
-		<!--title="Password must be exactly 8 characters in length and consists of at least one Upper and lowercase characters, number and special character.">-->
-                
-<?php
-    
-?>
