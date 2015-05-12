@@ -59,13 +59,6 @@
             }
 		
 		//THIS IS THE VALIDATIONS
-		// Variable to check
-		$emailCheck = "@greenriver.edu";
-		// Validate email
-		if (!filter_var($emailCheck, FILTER_VALIDATE_EMAIL) === true) {
-			 echo("Please use your GreenRiver email to as Username.");
-		}
-		
 		$userCheck = $_POST['username'];
 		$passCheck = $_POST['password'];
 		if (!empty($userCheck) && !empty($_POST['password'])){

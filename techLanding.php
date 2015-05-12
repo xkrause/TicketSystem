@@ -95,7 +95,7 @@
                     <td><?php echo $row['description']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['domain']; ?></td>
-		    <td><?php echo $row['date submitted']; ?></td>
+					<td><?php echo $row['date submitted']; ?></td>
                 </tr>
             <?php } ?>
         </tbody>
