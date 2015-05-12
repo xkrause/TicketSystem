@@ -1,15 +1,16 @@
 <?php
     session_start();
+    require 'dbts.php';
     //redirect if you do not have the credentials
     if($_SESSION['accessLevel'] != '1'){
         header("Location: login.php");
     }
 
-    //this example was obtained from http://www.w3schools.com/php/php_mysql_select.asp
+    /*this example was obtained from http://www.w3schools.com/php/php_mysql_select.asp
     $username = "craigk_ts";
     $password = "Password02";
     $hostname = "localhost";
-    $dbname = "craigk_ticket";
+    $dbname = "craigk_ticket";*/
     
     //create the connection
     $conn = new mysqli($hostname, $username, $password, $dbname);
@@ -22,7 +23,7 @@
         //echo "Success";
     }
     
-    $sql = "SELECT firstname, lastname, urgency, description, email, domain FROM `craigk_ticket` . `Tickets`";
+    $sql = "SELECT firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets`";
     $result = $conn->query($sql);
     
     /*if ($result->num_rows > 0){
@@ -48,11 +49,11 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
 		
     <!-- jQuery -->
     <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
     
     <!-- DataTables -->
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
@@ -72,14 +73,16 @@
 <body>
 
     <h1 id="adminGreeting">Welcome, Technician!</h1>
-    <table id = "craigk_ticket">
+    <div class="jumbotron">
+    <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
             <tr id="label"><td>First Name</td>
             <td>Last Name</td>
             <td>Urgency</td>
             <td>Description</td>
             <td>Email</td>
-            <td>Domain</td></tr>
+            <td>Domain</td>
+	    <td>Date Submitted</td></tr>
         </thead>
         <tbody>
             <?php foreach($result as $row) { ?>
@@ -90,21 +93,24 @@
                     <td><?php echo $row['description']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['domain']; ?></td>
+		    <td><?php echo $row['date submitted']; ?></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>    
-    
+    </div>
 
-    <script>
-        $(document).ready(function(){
-            $('#craigk_ticket').dataTable();
-        });
-    </script>
-    
     <div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
-
+	<button type="button" id="logout" class="btn btn-default">Log Out</button>
         <h3>Submit a ticket <a href="ticket.php">here</a></h3>
     </div>
 </body>
+<script>
+        $(document).ready(function(){
+            $('#craigk_ticket').dataTable();
+        });
+	$("#logout").click(function(){
+	    window.location = "logout.php";
+	});
+</script>
