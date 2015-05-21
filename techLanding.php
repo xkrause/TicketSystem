@@ -84,6 +84,7 @@
             <td>Email</td>
             <td>Domain</td>
 	    <td>Date Submitted</td>
+            <td>Status</td>
 	    </tr>
         </thead>
         <tbody>
@@ -95,7 +96,8 @@
                     <td><?php echo $row['description']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['domain']; ?></td>
-					<td><?php echo $row['date submitted']; ?></td>
+                    <td><?php echo $row['date submitted']; ?></td>
+                    <td><button onclick = "closeAlert()">Close Ticket</button></td>
                 </tr>
             <?php } ?>
         </tbody>
@@ -117,4 +119,12 @@
 	$("#logout").click(function(){
 	    window.location = "logout.php";
 	});
+        
+        function closeAlert(){
+            confirm("Are you sure you want to close this ticket?");
+        }
+        
+        if (closeAlert == true) {
+            //delete the ticket with the specified ticketid
+        }
 </script>

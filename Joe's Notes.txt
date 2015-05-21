@@ -17,3 +17,8 @@ started working on the technician landing page
 4-24-2015 <COLOR CODING PRIORITIES>
 color coded the priority dropdown menu.
 	-Need to start on server side validation
+	
+5-21-2015 <UPDATES>
+	-set the datatable to display a limited amount of data per cell
+	-added a close ticket button, non functional
+	-added a confirmation alert when the close ticket button is clicked

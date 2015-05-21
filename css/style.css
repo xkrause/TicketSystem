@@ -24,6 +24,31 @@
     text-decoration:underline;
 }
 
+#adminGreeting {
+    text-align:center;
+    /*color: #03C728;*/
+}
+
+#label {
+    text-decoration: underline;
+}
+
+thead {
+    background: lightgrey;
+}
+
+.datatable td{
+    width: 160px;
+    height: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 200px;
+}
+
+/*
+ *color coding isn't being used
+ *
 .green {
     background: green;
 }
@@ -35,15 +60,4 @@
 .red {
     background: red;
 }
-
-#adminGreeting {
-    text-align:center;
-}
-
-thead {
-    background: lightgrey;
-}
-
-#label {
-    text-decoration: underline;
-}
+*/
