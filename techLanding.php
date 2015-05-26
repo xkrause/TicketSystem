@@ -23,7 +23,7 @@
         //echo "Success";
     }
     
-    $sql = "SELECT firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets`";
+    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active != 1";
     $result = $conn->query($sql);
     $close = "UPDATE `craigk_ticket` . `Tickets` SET closed = true WHERE closed = false";
     
@@ -98,7 +98,8 @@
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['domain']; ?></td>
                     <td><?php echo $row['date submitted']; ?></td>
-                    <td><button onclick = "closeAlert()">Close Ticket</button></td>
+                    <td><?php echo "<a href='closeTicket.php?ticketid=$row[ticketid]'>Close"; ?></td>
+		    <!--<td><button name='close-btn' id='<?php echo $row['ticketid']; ?>' onclick = "closeAlert()">Close Ticket</button></td>-->
                 </tr>
             <?php } ?>
         </tbody>
@@ -121,9 +122,13 @@
 	    window.location = "logout.php";
 	});
         
-        function closeAlert(){
-            confirm("Are you sure you want to close this ticket?");
-        }
+        var close = document.getElementsByClass('close-btn');
+            //confirm("Are you sure you want to close this ticket?");
+	    $(close).click(function(){
+		$("#craigk_ticket").load('closeTicket.php', {Tid:$(this.id)});
+		alert("here i am");
+	    });
+        
         
         if (closeAlert == true) {
             <?php
