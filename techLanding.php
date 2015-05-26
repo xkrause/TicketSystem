@@ -25,6 +25,7 @@
     
     $sql = "SELECT firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets`";
     $result = $conn->query($sql);
+    $close = "UPDATE `craigk_ticket` . `Tickets` SET closed = true WHERE closed = false";
     
     /*if ($result->num_rows > 0){
         //output the data of each row
@@ -84,7 +85,7 @@
             <td>Email</td>
             <td>Domain</td>
 	    <td>Date Submitted</td>
-            <td>Status</td>
+            <td>Close Ticket</td>
 	    </tr>
         </thead>
         <tbody>
@@ -125,6 +126,8 @@
         }
         
         if (closeAlert == true) {
-            //delete the ticket with the specified ticketid
+            <?php
+            $close;
+            ?>
         }
 </script>
