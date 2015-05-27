@@ -23,7 +23,7 @@
         //echo "Success";
     }
     
-    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active != 1";
+    $sql = "SELECT `Tickets`.ticketid, `Tickets`.firstname, `Tickets`.lastname, `Tickets`.urgency, `Tickets`.description, `Tickets`.email, `Tickets`.domain, `Tickets`.`date submitted`, `notes`.note FROM `craigk_ticket` . `Tickets` LEFT JOIN `craigk_ticket` . `notes` ON `Tickets`.ticketid = `notes`.`ticketid` WHERE active != 1";
     $result = $conn->query($sql);
     $close = "UPDATE `craigk_ticket` . `Tickets` SET closed = true WHERE closed = false";
     
@@ -85,6 +85,7 @@
             <td>Email</td>
             <td>Domain</td>
 	    <td>Date Submitted</td>
+	    <td>Notes</td>
             <td>Close Ticket</td>
 	    </tr>
         </thead>
@@ -98,18 +99,12 @@
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['domain']; ?></td>
                     <td><?php echo $row['date submitted']; ?></td>
-                    <td><?php echo "<a href='closeTicket.php?ticketid=$row[ticketid]'>Close"; ?></td>
-		    <!--<td><button name='close-btn' id='<?php echo $row['ticketid']; ?>' onclick = "closeAlert()">Close Ticket</button></td>-->
+		    <td><?php echo $row['note'] ?></td>
+		    <td><?php echo "<a href='closeTicket.php?ticketid=$row[ticketid]'><button>Close Ticket</button></a>" ?></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>    
-    </div>
-
-    <div id="ticketInfo">
-        <!--<h3>List of tickets that have been submitted:</h3>-->
-	<button type="button" id="logout" class="btn btn-default">Log Out</button>
-        <h3>Submit a ticket <a href="ticket.php">here</a></h3>
     </div>
 </body>
 <script>
@@ -118,17 +113,10 @@
 		"order": [[ 6, "desc" ]]
 		});
 	});
+	
 	$("#logout").click(function(){
 	    window.location = "logout.php";
 	});
-        
-        var close = document.getElementsByClass('close-btn');
-            //confirm("Are you sure you want to close this ticket?");
-	    $(close).click(function(){
-		$("#craigk_ticket").load('closeTicket.php', {Tid:$(this.id)});
-		alert("here i am");
-	    });
-        
         
         if (closeAlert == true) {
             <?php
