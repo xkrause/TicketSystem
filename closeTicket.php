@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require 'dbts.php';
     if($_SESSION['accessLevel'] != '1'){
         header("Location: login.php");

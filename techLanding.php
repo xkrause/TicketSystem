@@ -25,7 +25,6 @@
     
     $sql = "SELECT `Tickets`.ticketid, `Tickets`.firstname, `Tickets`.lastname, `Tickets`.urgency, `Tickets`.description, `Tickets`.email, `Tickets`.domain, `Tickets`.`date submitted`, `notes`.note FROM `craigk_ticket` . `Tickets` LEFT JOIN `craigk_ticket` . `notes` ON `Tickets`.ticketid = `notes`.`ticketid` WHERE active != 1";
     $result = $conn->query($sql);
-    $close = "UPDATE `craigk_ticket` . `Tickets` SET closed = true WHERE closed = false";
     
     /*if ($result->num_rows > 0){
         //output the data of each row
@@ -86,7 +85,6 @@
             <td>Domain</td>
 	    <td>Date Submitted</td>
 	    <td>Notes</td>
-            <td>Close Ticket</td>
 	    </tr>
         </thead>
         <tbody>
@@ -99,8 +97,7 @@
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['domain']; ?></td>
                     <td><?php echo $row['date submitted']; ?></td>
-		    <td><?php echo $row['note'] ?></td>
-		    <td><?php echo "<a href='closeTicket.php?ticketid=$row[ticketid]'><button>Close Ticket</button></a>" ?></td>
+		    <td><?php echo "<a href='view.php?ticketid=$row[ticketid]'><button>View/Edit Notes</button></a>" ?></td>
                 </tr>
             <?php } ?>
         </tbody>
