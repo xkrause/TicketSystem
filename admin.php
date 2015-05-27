@@ -1,12 +1,16 @@
 <?php
-    //open session variables for use on this page
     session_start();
-    //bring in database login credentials
     require 'dbts.php';
     //redirect if you do not have the credentials
     if($_SESSION['accessLevel'] != '2'){
         header("Location: login.php");
     }
+
+    /*this example was obtained from http://www.w3schools.com/php/php_mysql_select.asp
+    $username = "craigk_ts";
+    $password = "Password02";
+    $hostname = "localhost";
+    $dbname = "craigk_ticket";*/
     
     //create the connection
     $conn = new mysqli($hostname, $username, $password, $dbname);
@@ -18,9 +22,19 @@
     else{
         //echo "Success";
     }
-    //pull the data into the page and save it to a variable
-    $sql = "SELECT firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets`";
+    
+    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active != 1";
     $result = $conn->query($sql);
+    
+    /*if ($result->num_rows > 0){
+        //output the data of each row
+        while($row = $result->fetch_assoc()){
+            echo "First Name: " . $row['firstname'] . " Last Name: " . $row['lastname'] . "<br>";
+        }
+    }
+    else {
+        echo "0 results";
+    }*/
     
     $conn->close();
 ?>
@@ -58,34 +72,37 @@
 
 <body>
 
-    <h1 id="adminGreeting">Welcome, Administrator!</h1>
+    <h1 id="adminGreeting">Welcome, Admin!</h1>
     <div class="jumbotron">
     <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
-            <tr id="label"><td>First Name</td>
+            <tr id="label">
+	    <td>First Name</td>
             <td>Last Name</td>
             <td>Urgency</td>
             <td>Description</td>
             <td>Email</td>
             <td>Domain</td>
-	    <td>Date Submitted</td></tr>
+	    <td>Date Submitted</td>
+	    <td>Notes</td>
+	    </tr>
         </thead>
         <tbody>
             <?php foreach($result as $row) { ?>
-                <tr>
+                <tr> 
                     <td><?php echo $row['firstname']; ?></td>
                     <td><?php echo $row['lastname']; ?></td>
                     <td><?php echo $row['urgency']; ?></td>
                     <td><?php echo $row['description']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['domain']; ?></td>
-		    <td><?php echo $row['date submitted']; ?></td>
+                    <td><?php echo $row['date submitted']; ?></td>
+		    <td><?php echo "<a href='viewAdmin.php?ticketid=$row[ticketid]'><button>View/Edit Notes</button></a>" ?></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>    
     </div>
-
     <div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
 	<button type="button" id="logout" class="btn btn-default">Log Out</button>
@@ -94,10 +111,18 @@
 </body>
 <script>
         $(document).ready(function(){
-            $('#craigk_ticket').dataTable({
-		"order": [[ 6, "desc" ]]});
-        });
+            $('#craigk_ticket').dataTable( {
+		"order": [[ 6, "desc" ]]
+		});
+	});
+	
 	$("#logout").click(function(){
 	    window.location = "logout.php";
 	});
+        
+        if (closeAlert == true) {
+            <?php
+            $close;
+            ?>
+        }
 </script>

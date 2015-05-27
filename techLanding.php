@@ -23,7 +23,7 @@
         //echo "Success";
     }
     
-    $sql = "SELECT `Tickets`.ticketid, `Tickets`.firstname, `Tickets`.lastname, `Tickets`.urgency, `Tickets`.description, `Tickets`.email, `Tickets`.domain, `Tickets`.`date submitted`, `notes`.note FROM `craigk_ticket` . `Tickets` LEFT JOIN `craigk_ticket` . `notes` ON `Tickets`.ticketid = `notes`.`ticketid` WHERE active != 1";
+    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active != 1";
     $result = $conn->query($sql);
     
     /*if ($result->num_rows > 0){
@@ -102,6 +102,11 @@
             <?php } ?>
         </tbody>
     </table>    
+    </div>
+    <div id="ticketInfo">
+        <!--<h3>List of tickets that have been submitted:</h3>-->
+	<button type="button" id="logout" class="btn btn-default">Log Out</button>
+        <h3>Submit a ticket <a href="ticket.php">here</a></h3>
     </div>
 </body>
 <script>

@@ -1,7 +1,7 @@
 <?php
     session_start();
     require 'dbts.php';
-    if($_SESSION['accessLevel'] != '1' || $_SESSION['accessLevel'] != '2'){
+    if($_SESSION['accessLevel'] != '2'){
         header("Location: login.php");
     }
     if ($dbh->connect_error){
