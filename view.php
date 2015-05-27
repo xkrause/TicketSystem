@@ -57,7 +57,7 @@
         $statement->execute();
     }
 ?>
-
+<link rel="stylesheet" href="css/style.css">
 <body>
     <h1 id="adminGreeting">Welcome, Technician!</h1>
     
