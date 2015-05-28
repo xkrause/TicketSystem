@@ -1,8 +1,8 @@
 <?php
     session_start();
     require 'dbts.php';
-    if($_SESSION['accessLevel'] != '1'){
-        header("Location: login.php");
+    if($_SESSION['accessLevel'] != '1' || $_SESSION['accessLevel'] != '2'){
+        //header("Location: login.php");
     }
     $conn = new mysqli($hostname, $username, $password, "craigk_ticket");
     

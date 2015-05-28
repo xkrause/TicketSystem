@@ -1,8 +1,8 @@
 <?php
     session_start();
     require 'dbts.php';
-    if($_SESSION['accessLevel'] != '2'){
-        header("Location: login.php");
+    if($_SESSION['accessLevel'] != '1' || $_SESSION['accessLevel'] != '2'){
+        //header("Location: login.php");
     }
     if ($dbh->connect_error){
         die("Connection failed: " . $dbh->connect_error);
@@ -61,7 +61,7 @@
 ?>
 <link rel="stylesheet" href="css/style.css">
 <body>
-    <h1 id="adminGreeting">Welcome, Technician!</h1>
+    <h1 id="adminGreeting">Welcome, Admin!</h1>
     
     <div class="jumbotron">
         <?php
