@@ -84,6 +84,15 @@
            </form>
            <a href='closeTicket.php?ticketid=<?php echo $tid; ?>'><button>Close Ticket</button></a>
            <a href='techLanding.php'><button>Return</button></a>
+           
+           <p> Please choose a category:</p>
+            <select>
+              <option value="option1">Problem 1</option>
+              <option value="option2">Problem 2</option>
+              <option value="option3">Problem 3</option>
+              <option value="option4">Problem 4</option>
+              <option value="option5">Problem 5</option>
+            </select>
     </div>
     
 </body>
