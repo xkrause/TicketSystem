@@ -59,7 +59,14 @@
     }
     
 ?>
-<link rel="stylesheet" href="css/style.css">
+<head>
+    <!--LINK TO STYLESHEET-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+
 <body>
     <h1 id="adminGreeting">Welcome, Technician!</h1>
     
@@ -67,8 +74,6 @@
         <?php
         
         echo "$fname $lname"; echo "<br>";
-        
-        
         
         foreach($resultNotes as $row){
             echo $row['note'];
@@ -79,13 +84,18 @@
     
            <form action='view.php?ticketid=<?php echo $tid; ?>' method='post'>
                 <h4>Add Notes</h4>
-                <textarea name="notes" require placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
+                <textarea rows="8" cols="50" name="notes" require placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
+                <br>
                 <input name="submit" type="submit" value="Submit">
            </form>
+           
+           
            <a href='closeTicket.php?ticketid=<?php echo $tid; ?>'><button>Close Ticket</button></a>
            <a href='techLanding.php'><button>Return</button></a>
+           <br> <br>
            
-           <p> Please choose a category:</p>
+        <form>
+            Please choose a category:
             <select>
               <option value="option1">Problem 1</option>
               <option value="option2">Problem 2</option>
@@ -93,6 +103,9 @@
               <option value="option4">Problem 4</option>
               <option value="option5">Problem 5</option>
             </select>
+        </form>
+            
+            <form> Assigned Technician: <input type="text" name="TechName"></form>
     </div>
     
 </body>
