@@ -1,14 +1,12 @@
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title>Ticket</title>
-    <!--Linking to the stylesheet and jQuery library-->
-    <link rel="stylesheet" href="css/style.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <title>Ticket</title><!--Linking to the stylesheet and jQuery library-->
+    <link href="css/style.css" rel="stylesheet">
+    <script src=
+    "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
-        /*
+    /*
          * This function will allow for multiple
          * serial number fields to be added or
          * removed if multiple computers are
@@ -26,7 +24,7 @@
                 if (x < max_fields) { //if current serial number field count is less than 10, add another field and increase counter by 1
                     x++;
                     //below, this will remove a serial number input field
-                $(wrapper).append('<div><input type="text" id="serial" value="Serial Number"/><a href="#" class="remove_field">Remove</a></div>');
+                $(wrapper).append('<div><input type="text" id="serial" value="Serial Number"/><a href="#" class="remove_field">Remove<\/a><\/div>');
             }
         });
               $(wrapper.on("click",".remove_field", function(e){
@@ -48,40 +46,52 @@
 
 <body>
     <?php
-        $hostname = 'localhost';
-        $username = 'craigk_ts';
-        $password = 'Password02';
-        
-        //if connected to db, echo a success message
-        try{
-            $dbh = new PDO("mysql:host=$hostname;dbname=mysql", $username, $password);
-            echo 'Connected to database';
-        }
-    ?>
-    <!--Title for the page-->
+            $hostname = 'localhost';
+            $username = 'craigk_ts';
+            $password = 'Password02';
+            
+            //if connected to db, echo a success message
+            try{
+                $dbh = new PDO("mysql:host=$hostname;dbname=mysql", $username, $password);
+                echo 'Connected to database';
+            }
+        ?><!--Title for the page-->
+
     <h2 id="title">Ticket Form</h2>
     <!--putting the form into a div for styling purposes-->
+
     <div id="ticketInfo">
-        <input type="text" placeholder="Problem"></input>
-        <input type="text" placeholder="Location"></input>
-        <br>
-            
-            <div -d="serial"> <!--Putting the "add fields" in a div, in case we want to further style it-->
-                <!--below, the "add a serial number field" button-->
-                <div class="input_fields_wrap">
-                    <button class="add_field_button">Add A field</button>
-                    <div><input type="text" id="serial" placeholder="Serial Number"></div>
+        <input placeholder="Problem" type="text"> <input placeholder="Location"
+        type="text"><br>
+
+        <div>
+            <!--Putting the "add fields" in a div, in case we want to further style it-->
+            <!--below, the "add a serial number field" button-->
+
+            <div class="input_fields_wrap">
+                <button class="add_field_button">Add A field</button>
+
+                <div>
+                    <input id="serial" placeholder="Serial Number" type="text">
                 </div>
             </div>
-                
-        <!--Adding a dropdown menu for priority level-->
-        <select id="priority" onchange = "colorFunction()">
-            <option class="green" value="Low">Low</option>
-            <option class="orange" value="Medium">Medium</option>
-            <option class="red" value="High">High</option>
-        </select>
-        <h1 id="tempText">This is where the ticket submitter will fill out the form.</h1>
-    </div>
+        </div><!--Adding a dropdown menu for priority level-->
+        <select id="priority" onchange="colorFunction()">
+            <option class="green" value="Low">
+                Low
+            </option>
 
+            <option class="orange" value="Medium">
+                Medium
+            </option>
+
+            <option class="red" value="High">
+                High
+            </option>
+        </select>
+
+        <h1 id="tempText">This is where the ticket submitter will fill out the
+        form.</h1>
+    </div>
 </body>
 </html>
