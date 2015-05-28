@@ -65,6 +65,21 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+        <script>
+    //Counting the letters
+    $(document).ready(function() {
+    var text_max = 500;
+    $('#textarea_feedback').html(text_max + ' characters remaining');
+
+    $('#notes').keyup(function() {
+        var text_length = $('#notes').val().length;
+        var text_remaining = text_max - text_length;
+
+        $('#textarea_feedback').html(text_remaining + ' characters remaining');
+    });
+});
+    </script>
 </head>
 
 <body>
@@ -84,7 +99,8 @@
     
            <form action='view.php?ticketid=<?php echo $tid; ?>' method='post'>
                 <h4>Add Notes</h4>
-                <textarea rows="8" cols="50" name="notes" require placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
+                <textarea rows="8" cols="50" id = "notes" maxlength = "500" require placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
+                <div id="textarea_feedback"></div>
                 <br>
                 <input name="submit" type="submit" value="Submit">
            </form>
@@ -107,5 +123,4 @@
             
             <form> Assigned Technician: <input type="text" name="TechName"></form>
     </div>
-    
 </body>
