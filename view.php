@@ -19,6 +19,7 @@
         } catch (PDOException $e) {
             echo $e->getMessage();
     }
+
     
     //retrieve ticket id so we can query the correct ticket to access on the page later
     $id=$_GET['ticketid'];
@@ -47,7 +48,7 @@
     }
     
     //if there is a post variable notes....
-    if (isset($_POST['notes'])){
+    if (!empty($_POST['notes'])){
         
         //attempt connection to the database. print error if unsuccessful
         /*try {
