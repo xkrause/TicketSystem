@@ -191,9 +191,16 @@
                     </select>
                     
                     <br>
-                    <input name="submit" type="submit" value="Submit" onsubmit="alert()">
+                    <input name="submit" type="submit" value="Submit" onsubmit="alert()" onclick="myFunction()">
                 </div>
             </form>
         </div>
     </div>
+	
+	<script>
+		//The  alert box
+function myFunction() {
+    confirm("Do you want to submit your ticket?");
+}
+</script>
 </body>
