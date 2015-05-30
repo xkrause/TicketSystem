@@ -1,5 +1,6 @@
 <?php
     session_start();
+    //require login info
     require 'dbts.php';
     //redirect if you do not have the credentials
     if($_SESSION['accessLevel'] != '1' || $_SESSION['accessLevel'] != '2'){
