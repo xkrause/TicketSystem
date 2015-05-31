@@ -44,13 +44,13 @@
             // This is wherever you want to redirect the user to
             //if technician go to technician page
             if ($count == 1 && $al == "1") {
-                $_SESSION['identity'] = $sqlid;
+                $_SESSION['identity'] = $id;
                 $_SESSION['accessLevel'] = $al;
                 header("Location: techLanding.php"); 
             }
             //if admin go to admin page
             elseif($count == 1 && $al == "2"){
-                $_SESSION['identity'] = $sqlid;
+                $_SESSION['identity'] = $id;
                 $_SESSION['accessLevel'] = $al;
                 header("Location: admin.php");
             }

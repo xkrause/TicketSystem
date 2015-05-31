@@ -19,7 +19,6 @@
         } catch (PDOException $e) {
             echo $e->getMessage();
     }
-
     
     //retrieve ticket id so we can query the correct ticket to access on the page later
     $id=$_GET['ticketid'];
@@ -50,17 +49,17 @@
     //if there is a post variable notes....
     if (!empty($_POST['notes'])){
         
-        //attempt connection to the database. print error if unsuccessful
-        /*try {
-            $dbh = new PDO("mysql:host=$hostname;
-                           dbname=craigk_ticket", $username, $password);
-            //echo "Connected to database.";
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }*/
+        //gets the server time and formats it for display
+        $date = new DateTime();
+        $dateFormatted=$date->format('Y-m-d H:i:s');
+        
+        $identity=$_SESSION['identity'];
+        foreach( $identity as $value ) {
+           $identity=$value;
+        }
         
         //save the new posted note to be used in insert statment for the database
-        $scrib=$_POST['notes'];
+        $scrib=$identity . "--------" . $dateFormatted . "<br>" . $_POST['notes'];
         
         //sql statment to insert the above saved notes into the database
         $sql="INSERT INTO `craigk_ticket`.`notes` (note,ticketid)
@@ -90,7 +89,7 @@
     <script>
     //Script to display the remaining characters in the database
     $(document).ready(function(){
-        var text_max = 500;
+        var text_max = 1000;
         $('#textarea_feedback').html(text_max + ' characters remaining');
     
         $('#notes').keyup(function() {
@@ -111,35 +110,38 @@
     
     <div class="jumbotron">
         <?php
-        //JOE this is where all the other information should be displayed.ie email,description,.....
-        //Maybe style each not entry
-        //I want to add, later, the tech or admin name to each note as well as the time but that will be later
-        echo "$fname " . "$lname" . "<br>";
-        
+        echo "<div class='panel panel-default'>";
+        echo "<div class='panel-heading'><h4>Ticket ID:$tid   Urgency:$urg</h4></div>";
+        echo "<div class='panel-body'>$dom $fname $lname: $email</div>";
+        echo "<div class='panel-footer'>Description: $des</div></div>";
+      
         if(!empty($resultNotes)){
+            echo "<ul class='list-group'>";
             foreach($resultNotes as $row){
+                echo "<li class='list-group-item'>";
                 echo $row['note'];
-                echo "<br>";
+                echo "</li>"; 
             }
+            echo "</ul>";
         }
         ?>
     
            <form action='view.php?ticketid=<?php echo $id; ?>' method='post'>
-                <h4>Add Notes</h4>
-                <textarea name="notes" rows="8" cols="50" id = "notes" maxlength = "500" require placeholder="500 character limit." class="form-control"></textarea>
+                <h4>Notes</h4>
+                <textarea name="notes" rows="8" cols="50" id = "notes" maxlength = "1000" require placeholder="1000 character limit." class="form-control"></textarea>
                 <div id="textarea_feedback"></div>
                 <br>
-                <input name="submit" type="submit" value="Submit">
+                <input name="submit" type="submit" value="Submit" class="btn btn-default" style='float: right;'>
            </form>
-           
-           <a href='closeTicket.php?ticketid=<?php echo $id; ?>'><button>Close Ticket</button></a>
+           <br>
+           <a href='closeTicket.php?ticketid=<?php echo $id; ?>'><button class="btn btn-default">Close Ticket</button></a>
            <a href='<?php if($_SESSION['accessLevel'] == '1'){
                               echo "techLanding.php";
                           }
                           elseif($_SESSION['accessLevel'] == '2'){
                               echo "admin.php";
                           }
-                    ?>'><button>Return</button></a>
+                    ?>'><button class="btn btn-default" style='float: left;'>Return</button></a>
            <br> <br>
            
         <form>
