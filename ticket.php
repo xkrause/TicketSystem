@@ -57,7 +57,7 @@
         //this example was obtained from http://www.inmotionhosting.com/support/website/sending-email-from-site/using-the-php-mail-function-to-send-emails
         $to = $_POST['email'];
         $tech = 'akrause3@mail.greenriver.edu';
-        $subject = "Hello $firstName! Thank you for submitting your ticket. Here's what you submitted: $description. A technician will contact you shortly.";
+        $subject = "Hello $firstName! \nThank you for submitting your ticket. \nDescription: $description. \nA technician will contact you shortly.";
         $techSubject = "A new ticket has been submitted. $firstName $lastName ($domain) says: $description. Priority is $urgency. Contact $firstName at $email.";
         $message = 'An email dialog has been created.';
         mail($to, $message, $subject);
