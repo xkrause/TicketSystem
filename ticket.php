@@ -63,11 +63,7 @@
         mail($to, $message, $subject);
         mail($tech, $message, $techSubject);
         
-        //confirmation of submission
-        
-        }
-        function alert(){
-            alert("Your ticket has been submitted and will be seen to shortly");
+        //confirmation of submission 
         }
 ?>
 
@@ -148,7 +144,7 @@
     <img src="images/grcicon.png" alt="greenriver college icon"><span id="title" style="font-size: 3em;">Green River College Online Ticket Form</span>
     <div class="container">
         <div class="jumbotron">
-            <form method="post" action="#">
+            <form method="post" action="#" onsubmit="submissionConfirm()">
                 <!--putting the form into a div for styling purposes-->
                 <div id="ticketInfo">
                     <input type="text" required placeholder="First Name" name="fname" class="form-control" 
@@ -191,16 +187,23 @@
                     </select>
                     
                     <br>
-                    <input name="submit" type="submit" value="Submit" onsubmit="myFunction()">
+                    <input name="submit" type="submit" value="Submit" >
                 </div>
-			
-					<script>
-					//The  alert box
-					function myFunction() {
-						alert ("Do you want to submit your ticket?");
-					}
-				</script>
             </form>
+			
+				<script>
+				//The confirmation box
+				function submissionConfirm() {
+					var Confirmed = confirm ("Do you want to submit your ticket?");
+					if (Confirmed) {
+						var ConfirmedCeption = alert ("Your ticket has been submitted!");
+						if (ConfirmedCeption) {
+							//Page redirecting is not working :( Currently leaving it here.
+							location.replace('http://google.com');
+						}				 
+					}
+				}
+			</script>
         </div>
     </div>
 	

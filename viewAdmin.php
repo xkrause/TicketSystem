@@ -106,9 +106,23 @@
            </form>
            
            
-           <a href='closeTicket.php?ticketid=<?php echo $tid; ?>'><button>Close Ticket</button></a>
+           <a href='closeTicket.php?ticketid=<?php echo $tid; ?>'><button >Close Ticket</button></a>
            <a href='techLanding.php'><button>Return</button></a>
            <br> <br>
+
+           <script>
+				//The confirmation box
+				function closeConfirm() {
+					var Confirmed = confirm ("Do you want to close this ticket?");
+					if (Confirmed) {
+						var ConfirmedCeption = alert ("Case closed! \nPress Return to go back.");
+						if (ConfirmedCeption) {
+							//Page redirecting is not working :( Currently leaving it here.
+							location.replace('http://google.com');
+						}				 
+					}
+				}
+          </script>
            
         <form>
             Please choose a category:
