@@ -58,7 +58,7 @@
         $to = $_POST['email'];
         $tech = 'akrause3@mail.greenriver.edu';
         $subject = "Hello $firstName! \nThank you for submitting your ticket. \nDescription: $description. \nA technician will contact you shortly.";
-        $techSubject = "A new ticket has been submitted. $firstName $lastName ($domain) says: $description. Priority is $urgency. Contact $firstName at $email.";
+        $techSubject = "A new ticket has been submitted. \n$firstName $lastName ($domain) \n $description. \n Priority is $urgency. \n Contact $firstName at $email. \n View ticket at http:/xanderkrause.greenrivertech.net/login.php";
         $message = 'An email dialog has been created.';
         mail($to, $message, $subject);
         mail($tech, $message, $techSubject);

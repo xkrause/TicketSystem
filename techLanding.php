@@ -26,6 +26,8 @@
     
     $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active != 1";
     $result = $conn->query($sql);
+    $closed = "SELECT * FROM `craigk_ticket` . `Tickets` WHERE active = 1";
+    $closeResult = $conn->query($closed);
     
     /*if ($result->num_rows > 0){
         //output the data of each row

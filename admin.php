@@ -23,8 +23,15 @@
         //echo "Success";
     }
     
+    if($_POST['toggler'] == "toggle"){
+    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active = 1";
+    }else{
     $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active != 1";
+    //$closeResult = $conn->query($sql);
+    }
     $result = $conn->query($sql);
+    
+   
     
     /*if ($result->num_rows > 0){
         //output the data of each row
@@ -72,9 +79,23 @@
 
 <body>
 
-    <h1 id="adminGreeting">Welcome, Admin!</h1>
-    <div class="jumbotron">
-    <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
+    <h1 id="adminGreeting">Welcome, Technician!</h1>
+    <form action="#" method="POST">
+        
+        <?php if($_POST['toggler'] == ''){
+            echo "<input type='radio' name='toggler' value='toggle'></input>";
+            echo "<input type='submit' value='Show Closed'>";
+        }elseif($_POST['toggler'] == 'toggle'){
+            echo "<input type='radio' name='toggler' value=''></input>";
+            echo "<input type='submit' value='Show Open'>";
+        } ?>
+    
+
+    </form>
+    <?php
+    print_r($_POST['toggler']); 
+    /*foreach ($closeResult as $row) { ?>
+        <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
             <tr id="label">
 	    <td>First Name</td>
@@ -84,6 +105,52 @@
             <td>Email</td>
             <td>Domain</td>
 	    <td>Date Submitted</td>
+            <td>Last Updated
+            <td>Closed</td>
+            <td>PC ID</td>
+            <td>State ID</td>
+	    <td>Notes</td>
+	    </tr>
+        </thead>
+        <tbody>
+            <?php foreach($closeResult as $row) { ?>
+                <tr> 
+                    <td><?php echo $row['firstname']; ?></td>
+                    <td><?php echo $row['lastname']; ?></td>
+                    <td><?php echo $row['urgency']; ?></td>
+                    <td><?php echo $row['description']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['domain']; ?></td>
+                    <td><?php echo $row['date submitted']; ?></td>
+                    <td><?php echo $row['lastUpdated']; ?></td>
+                    <td><?php echo $row['closed']; ?></td>
+                    <td><?php echo $row['pcid']; ?></td>
+                    <td><?php echo $row['stateid']; ?></td>
+		    <td><?php echo "<a href='view.php?ticketid=$row[ticketid]'><button>View/Edit Notes</button></a>" ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>    
+    </div>
+    <?php } ?>
+    */
+    
+    print_r($_GET);
+    foreach ($result as $row) { ?>
+        <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr id="label">
+	    <td>First Name</td>
+            <td>Last Name</td>
+            <td>Urgency</td>
+            <td>Description</td>
+            <td>Email</td>
+            <td>Domain</td>
+	    <td>Date Submitted</td>
+            <td>Last Updated
+            <td>Closed</td>
+            <td>PC ID</td>
+            <td>State ID</td>
 	    <td>Notes</td>
 	    </tr>
         </thead>
@@ -97,32 +164,46 @@
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['domain']; ?></td>
                     <td><?php echo $row['date submitted']; ?></td>
-		    <td><?php echo "<a href='viewAdmin.php?ticketid=$row[ticketid]'><button>View/Edit Notes</button></a>" ?></td>
+                    <td><?php echo $row['lastUpdated']; ?></td>
+                    <td><?php echo $row['closed']; ?></td>
+                    <td><?php echo $row['pcid']; ?></td>
+                    <td><?php echo $row['stateid']; ?></td>
+		    <td><?php echo "<a href='view.php?ticketid=$row[ticketid]'><button>View/Edit Notes</button></a>" ?></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>    
     </div>
+    <?php } ?>
+    
+    <div class="jumbotron">
+        <a href = "http://xanderkrause.greenrivertech.net/admin.php?view=closed">View Closed Tickets</a>
+    
+    
     <div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
 	<button type="button" id="logout" class="btn btn-default">Log Out</button>
         <h3>Submit a ticket <a href="ticket.php">here</a></h3>
     </div>
 </body>
-<script>
+<script>    
         $(document).ready(function(){
             $('#craigk_ticket').dataTable( {
 		"order": [[ 6, "desc" ]]
 		});
 	});
+        
+        $("#closed").click(function() {
+            
+        });
 	
 	$("#logout").click(function(){
 	    window.location = "logout.php";
 	});
         
-        if (closeAlert == true) {
+       /* if (closeAlert == true) {
             <?php
             $close;
             ?>
-        }
+        }*/
 </script>

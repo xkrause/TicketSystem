@@ -35,9 +35,10 @@
 
 thead {
     background: lightgrey;
+    max-width: 20px;
 }
 
-.datatable td{
+.datatable td {
     width: 160px;
     height: 15px;
     text-overflow: ellipsis;
