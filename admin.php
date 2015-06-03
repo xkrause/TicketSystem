@@ -79,7 +79,7 @@
 
 <body>
 
-    <h1 id="adminGreeting">Welcome, Technician!</h1>
+    <h1 id="adminGreeting">Welcome, Administrator!</h1>
     <form action="#" method="POST">
         
         <?php if($_POST['toggler'] == ''){
@@ -93,7 +93,7 @@
 
     </form>
     <?php
-    print_r($_POST['toggler']); 
+    //print_r($_POST['toggler']); 
     /*foreach ($closeResult as $row) { ?>
         <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
@@ -135,7 +135,7 @@
     <?php } ?>
     */
     
-    print_r($_GET);
+    //print_r($_GET);
     foreach ($result as $row) { ?>
         <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
@@ -192,10 +192,6 @@
 		"order": [[ 6, "desc" ]]
 		});
 	});
-        
-        $("#closed").click(function() {
-            
-        });
 	
 	$("#logout").click(function(){
 	    window.location = "logout.php";
