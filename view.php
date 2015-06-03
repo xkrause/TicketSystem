@@ -134,7 +134,7 @@
                 <input name="submit" type="submit" value="Submit" class="btn btn-default" style='float: right;'>
            </form>
            <br>
-           <a href='closeTicket.php?ticketid=<?php echo $id; ?>'><button class="btn btn-default">Close Ticket</button></a>
+           <a href='closeTicket.php?ticketid=<?php echo $id; ?>'><button class="btn btn-default" onclick="closeConfirm()">Close Ticket</button></a>
            <a href='<?php if($_SESSION['accessLevel'] == '1'){
                               echo "techLanding.php";
                           }
@@ -144,9 +144,22 @@
                     ?>'><button class="btn btn-default" style='float: left;'>Return</button></a>
            <br> <br>
            
+           <script>
+				//The confirmation box
+				function closeConfirm() {
+					var Confirmed = confirm ("Do you want to close this ticket?");
+					if (Confirmed) {
+						var ConfirmedCeption = alert ("Case closed! \nPress Return to go back.");
+						if (ConfirmedCeption) {
+							//Page redirecting is not working :( Currently leaving it here.
+							location.replace('http://google.com');
+						}				 
+					}
+				}
+			</script>  
+    <!--Lets leave this in place for later if we get to it. Right now this is another
+         sql statment and not as critical
         <form>
-            <!--Lets leave this in place for later if we get to it. Right now this is another
-                sql statment and not as critical
             Please choose a category:
             <select>
               <option value="option1">Problem 1</option>

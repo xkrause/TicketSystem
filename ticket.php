@@ -63,11 +63,7 @@
         mail($to, $message, $subject);
         mail($tech, $message, $techSubject);
         
-        //confirmation of submission
-        
-        }
-        function alert(){
-            alert("Your ticket has been submitted and will be seen to shortly");
+        //confirmation of submission 
         }
 ?>
 
@@ -148,19 +144,19 @@
     <img src="images/grcicon.png" alt="greenriver college icon"><span id="title" style="font-size: 3em;">Green River College Online Ticket Form</span>
     <div class="container">
         <div class="jumbotron">
-            <form method="post" action="#">
+            <form method="post" action="#" onsubmit="submissionConfirm()">
                 <!--putting the form into a div for styling purposes-->
                 <div id="ticketInfo">
-                    <input type="text" require placeholder="First Name" name="fname" class="form-control" 
+                    <input type="text" required placeholder="First Name" name="fname" class="form-control" 
 						title="First name can only contain characters."></input>
                     <br>
-                    <input type="text" require placeholder="Last Name" name="lname" class="form-control" 
+                    <input type="text" required placeholder="Last Name" name="lname" class="form-control" 
 						title="Last name can only contain characters."></input>
                     <br>
-                    <textarea name="description" require placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
+                    <textarea name="description" required placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
                     <br>
                     <!--<input type="textarea" placeholder="Problem description" name="description"></input>-->
-                    <input type="email" placeholder="Email" name="email" class="form-control" require></input>
+                    <input type="email" placeholder="Email" name="email" class="form-control" required></input>
                     <br>
                     <!--
                     at present we don't have a matching database field
@@ -175,32 +171,41 @@
                         </div>-->
                             
                     <!--Adding a dropdown menu for priority level-->
-                    <select id="priority"  name="urgency" class="form-control">
-                        <option value="-----">Urgency</option>
+                    <select id="priority"  name="urgency" class="form-control" required>
+                        <option selected="selected" disabled="disabled" value="">- Urgency - </option>
                         <option class="green" value="Low">Low</option>
                         <option class="orange" value="Medium">Medium</option>
                         <option class="red" value="High">High</option>
                     </select>
                     <br>
                     <!--A dropdown down menu to answer student/staff/faculty-->
-                    <select id="Domain" name="domain" class="form-control">
-                        <option value="-----">Select      Student/Staff/Faculty</option>
-                        <option value="Student">Student</option>
+                    <select required id="Domain" name="domain" class="form-control" required>
+                        <option selected="selected" disabled="disabled" value="">- Select: Student/Staff/Faculty -</option>
+                        <option value="Student">Student</option> 
                         <option value="Staff">Staff</option>
                         <option value="Faculty">Faculty</option>
                     </select>
                     
                     <br>
-                    <input name="submit" type="submit" value="Submit" onsubmit="alert()" onclick="myFunction()">
+                    <input name="submit" type="submit" value="Submit" >
                 </div>
             </form>
+			
+				<script>
+				//The confirmation box
+				function submissionConfirm() {
+					var Confirmed = confirm ("Do you want to submit your ticket?");
+					if (Confirmed) {
+						var ConfirmedCeption = alert ("Your ticket has been submitted!");
+						if (ConfirmedCeption) {
+							//Page redirecting is not working :( Currently leaving it here.
+							location.replace('http://google.com');
+						}				 
+					}
+				}
+			</script>
         </div>
     </div>
 	
-	<script>
-		//The  alert box
-function myFunction() {
-    confirm("Do you want to submit your ticket?");
-}
-</script>
+
 </body>
