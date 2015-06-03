@@ -151,16 +151,16 @@
             <form method="post" action="#">
                 <!--putting the form into a div for styling purposes-->
                 <div id="ticketInfo">
-                    <input type="text" require placeholder="First Name" name="fname" class="form-control" 
+                    <input type="text" required placeholder="First Name" name="fname" class="form-control" 
 						title="First name can only contain characters."></input>
                     <br>
-                    <input type="text" require placeholder="Last Name" name="lname" class="form-control" 
+                    <input type="text" required placeholder="Last Name" name="lname" class="form-control" 
 						title="Last name can only contain characters."></input>
                     <br>
-                    <textarea name="description" require placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
+                    <textarea name="description" required placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
                     <br>
                     <!--<input type="textarea" placeholder="Problem description" name="description"></input>-->
-                    <input type="email" placeholder="Email" name="email" class="form-control" require></input>
+                    <input type="email" placeholder="Email" name="email" class="form-control" required></input>
                     <br>
                     <!--
                     at present we don't have a matching database field
@@ -175,16 +175,16 @@
                         </div>-->
                             
                     <!--Adding a dropdown menu for priority level-->
-                    <select id="priority"  name="urgency" class="form-control">
-                        <option value="-----">Urgency</option>
+                    <select id="priority"  name="urgency" class="form-control" required>
+                        <option selected="selected" disabled="disabled" value="">- Urgency - </option>
                         <option class="green" value="Low">Low</option>
                         <option class="orange" value="Medium">Medium</option>
                         <option class="red" value="High">High</option>
                     </select>
                     <br>
                     <!--A dropdown down menu to answer student/staff/faculty-->
-                    <select id="Domain" name="domain" class="form-control">
-                        <option value="-----">Select      Student/Staff/Faculty</option>
+                    <select required id="Domain" name="domain" class="form-control" required>
+                        <option selected="selected" disabled="disabled" value="">- Select: Student/Staff/Faculty -</option>
                         <option value="Student">Student</option> 
                         <option value="Staff">Staff</option>
                         <option value="Faculty">Faculty</option>
@@ -193,14 +193,16 @@
                     <br>
                     <input name="submit" type="submit" value="Submit" onsubmit="myFunction()">
                 </div>
+			
+					<script>
+					//The  alert box
+					function myFunction() {
+						alert ("Do you want to submit your ticket?");
+					}
+				</script>
             </form>
         </div>
     </div>
 	
-	<script>
-		//The  alert box
-function myFunction() {
-    confirm("Do you want to submit your ticket?");
-}
-</script>
+
 </body>
