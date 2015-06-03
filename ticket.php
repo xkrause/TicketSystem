@@ -185,13 +185,13 @@
                     <!--A dropdown down menu to answer student/staff/faculty-->
                     <select id="Domain" name="domain" class="form-control">
                         <option value="-----">Select      Student/Staff/Faculty</option>
-                        <option value="Student">Student</option>
+                        <option value="Student">Student</option> 
                         <option value="Staff">Staff</option>
                         <option value="Faculty">Faculty</option>
                     </select>
                     
                     <br>
-                    <input name="submit" type="submit" value="Submit" onsubmit="alert()" onclick="myFunction()">
+                    <input name="submit" type="submit" value="Submit" onsubmit="myFunction()">
                 </div>
             </form>
         </div>
