@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require ('dbts.php');
     
     ini_set('display_errors', 1);
@@ -51,6 +52,12 @@
             
             //performs the sql statment writing to the database
             $statement->execute();
+            
+            if($_SESSION['accessLevel']=='1'){
+                header("Location: techLanding.php");
+            }elseif($_SESSION['accessLevel']=='2'){
+                header("Location: admin.php");
+            }
         }
         
         
