@@ -5,14 +5,8 @@
     if($_SESSION['accessLevel'] != '2'){
         header("Location: login.php");
     }
-
-    /*this example was obtained from http://www.w3schools.com/php/php_mysql_select.asp
-    $username = "craigk_ts";
-    $password = "Password02";
-    $hostname = "localhost";
-    $dbname = "craigk_ticket";*/
     
-    //create the connection
+    //create the connection. error if unsuccessful.
     $conn = new mysqli($hostname, $username, $password, $dbname);
     
     //check the connection
@@ -31,18 +25,6 @@
     }
     $result = $conn->query($sql);
     
-   
-    
-    /*if ($result->num_rows > 0){
-        //output the data of each row
-        while($row = $result->fetch_assoc()){
-            echo "First Name: " . $row['firstname'] . " Last Name: " . $row['lastname'] . "<br>";
-        }
-    }
-    else {
-        echo "0 results";
-    }*/
-    
     $conn->close();
 ?>
 
@@ -52,7 +34,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+    </script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- DataTables CSS -->
@@ -81,6 +64,7 @@
 
     <h1 id="adminGreeting">Welcome, Administrator!</h1>
     
+    <!--creates a button to display open or closed tickets-->
     <form action="#" method="POST" id="formToggle">
 	    <?php if($_POST['toggler'] == ''){
             echo "<input type='radio' name='toggler' id ='toggleClosed' value='toggle' checked></input>";
@@ -92,51 +76,9 @@
             echo "<input type='submit' value='Show Open' class = 'btn btn-default'>";
         } ?>
 	</form>
-   
-    <?php
-    //print_r($_POST['toggler']); 
-    /*foreach ($closeResult as $row) { ?>
-        <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
-        <thead>
-            <tr id="label">
-	    <td>First Name</td>
-            <td>Last Name</td>
-            <td>Urgency</td>
-            <td>Description</td>
-            <td>Email</td>
-            <td>Domain</td>
-	    <td>Date Submitted</td>
-            <td>Last Updated
-            <td>Closed</td>
-            <td>PC ID</td>
-            <td>State ID</td>
-	    <td>Notes</td>
-	    </tr>
-        </thead>
-        <tbody>
-            <?php foreach($closeResult as $row) { ?>
-                <tr> 
-                    <td><?php echo $row['firstname']; ?></td>
-                    <td><?php echo $row['lastname']; ?></td>
-                    <td><?php echo $row['urgency']; ?></td>
-                    <td><?php echo $row['description']; ?></td>
-                    <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['domain']; ?></td>
-                    <td><?php echo $row['date submitted']; ?></td>
-                    <td><?php echo $row['lastUpdated']; ?></td>
-                    <td><?php echo $row['closed']; ?></td>
-                    <td><?php echo $row['pcid']; ?></td>
-                    <td><?php echo $row['stateid']; ?></td>
-		    <td><?php echo "<a href='view.php?ticketid=$row[ticketid]'><button>View/Edit Notes</button></a>" ?></td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>    
-    </div>
-    <?php } ?>
-    */
     
-    //print_r($_GET);
+    <?php
+    
     foreach ($result as $row) { ?>
         <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
@@ -152,12 +94,11 @@
             <td>Closed</td>
             <td>PC ID</td>
             <td>State ID</td>
-	    <td>Notes</td>
 	    </tr>
         </thead>
         <tbody>
             <?php foreach($result as $row) { ?>
-                <tr> 
+                <tr <?php echo "id='$row[ticketid]'"; ?> class="tr"> 
                     <td><?php echo $row['firstname']; ?></td>
                     <td><?php echo $row['lastname']; ?></td>
                     <td><?php echo $row['urgency']; ?></td>
@@ -169,7 +110,6 @@
                     <td><?php echo $row['closed']; ?></td>
                     <td><?php echo $row['pcid']; ?></td>
                     <td><?php echo $row['stateid']; ?></td>
-		    <td><?php echo "<a href='view.php?ticketid=$row[ticketid]'><button>View/Edit Notes</button></a>" ?></td>
                 </tr>
             <?php } ?>
         </tbody>
@@ -183,20 +123,24 @@
         <h3>Submit a ticket <a href="ticket.php">here</a></h3>
     </div>
 </body>
-<script>    
+<script>
+        //prepare the datatable
         $(document).ready(function(){
             $('#craigk_ticket').dataTable( {
-		"order": [[ 6, "desc" ]]
+		"order": [[ 6, "desc" ]],
+                
 		});
 	});
 	
+        //redirects to logout.php to close the session and route to login.php
 	$("#logout").click(function(){
 	    window.location = "logout.php";
 	});
         
-       /*if (closeAlert == true) {
-            <?php
-            $close;
-            ?>
-        }*/
+        //when class tr is clicked link to that rows id in the view.php page
+        $(".tr").click(function(){
+            var idnow = $(this).attr('id');
+            window.location.href = "view.php?ticketid=".concat(idnow);
+        })
+
 </script>

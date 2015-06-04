@@ -80,6 +80,7 @@
 
     <h1 id="adminGreeting">Welcome, Technician!</h1>
     
+    <!--creates a button to display open or closed tickets-->
     <form action="#" method="POST" id="formToggle">
 	    <?php if($_POST['toggler'] == ''){
             echo "<input type='radio' name='toggler' id ='toggleClosed' value='toggle' checked></input>";
@@ -91,8 +92,9 @@
             echo "<input type='submit' value='Show Open' class = 'btn btn-default'>";
         } ?>
 	</form>
+    
     <?php
-    /*
+    
     foreach ($result as $row) { ?>
         <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
@@ -108,12 +110,11 @@
             <td>Closed</td>
             <td>PC ID</td>
             <td>State ID</td>
-	    <td>Notes</td>
 	    </tr>
         </thead>
         <tbody>
             <?php foreach($result as $row) { ?>
-                <tr> 
+                <tr <?php echo "id='$row[ticketid]'"; ?> class="tr"> 
                     <td><?php echo $row['firstname']; ?></td>
                     <td><?php echo $row['lastname']; ?></td>
                     <td><?php echo $row['urgency']; ?></td>
@@ -125,75 +126,37 @@
                     <td><?php echo $row['closed']; ?></td>
                     <td><?php echo $row['pcid']; ?></td>
                     <td><?php echo $row['stateid']; ?></td>
-		    <td><?php echo "<a href='view.php?ticketid=$row[ticketid]'><button>View/Edit Notes</button></a>" ?></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>    
     </div>
     <?php } ?>
-    */
-    foreach($result as $row) { ?>
-    <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
-        <thead>
-            <tr id="label">
-	    <td>First Name</td>
-            <td>Last Name</td>
-            <td>Urgency</td>
-            <td>Description</td>
-            <td>Email</td>
-            <td>Domain</td>
-	    <td>Date Submitted</td>
-            <td>Last Updated
-            <td>Closed</td>
-            <td>PC ID</td>
-            <td>State ID</td>
-	    <td>Notes</td>
-	    </tr>
-        </thead>
-        <tbody>
-            <?php foreach($result as $row) { ?>
-                <tr> 
-                    <td><?php echo $row['firstname']; ?></td>
-                    <td><?php echo $row['lastname']; ?></td>
-                    <td><?php echo $row['urgency']; ?></td>
-                    <td><?php echo $row['description']; ?></td>
-                    <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['domain']; ?></td>
-                    <td><?php echo $row['date submitted']; ?></td>
-                    <td><?php echo $row['lastUpdated']; ?></td>
-                    <td><?php echo $row['closed']; ?></td>
-                    <td><?php echo $row['pcid']; ?></td>
-                    <td><?php echo $row['stateid']; ?></td>
-		    <td><?php echo "<a href='view.php?ticketid=$row[ticketid]'><button>View/Edit Notes</button></a>" ?></td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>    
-    </div>
-    <?php } ?>
-    <div class = "jumbotron">
-    <div id="ticketInfo">
+    <div class="jumbotron">   
+		<div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
 	<button type="button" id="logout" class="btn btn-default">Log Out</button>
         <h3>Submit a ticket <a href="ticket.php">here</a></h3>
     </div>
-    </div>
 </body>
 <script>
+        //prepare the datatable
         $(document).ready(function(){
             $('#craigk_ticket').dataTable( {
-		"order": [[ 6, "desc" ]]
+		"order": [[ 6, "desc" ]],
+                
 		});
 	});
 	
+        //redirects to logout.php to close the session and route to login.php
 	$("#logout").click(function(){
 	    window.location = "logout.php";
 	});
         
-        /*if (closeAlert == true) {
-            <?php
-            $close;
-            ?>
-        }*/
+        //when class tr is clicked link to that rows id in the view.php page
+        $(".tr").click(function(){
+            var idnow = $(this).attr('id');
+            window.location.href = "view.php?ticketid=".concat(idnow);
+        })
+
 </script>
