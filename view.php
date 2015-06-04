@@ -207,7 +207,7 @@
             </div>
            </form>
            <br>
-           <a href='closeTicket.php?ticketid=<?php echo $id; ?>'><button class="btn btn-default">Close Ticket</button></a>
+           <button class="btn btn-default" onclick='closeConfirm()'>Close Ticket</button>
            <a href='<?php if($_SESSION['accessLevel'] == '1'){
                               echo "techLanding.php";
                           }
@@ -218,24 +218,26 @@
            <br><br>
 	           <script>
 				//The confirmation box
-				function closeConfirm() {
-                                    <?php
-                                        $to = $email;
-                                        $tech = 'akrause3@mail.greenriver.edu';
-                                        $closeSubject = "Ticket Closed";
-                                        $closeSubmitter = "Your ticket $description has been closed";
-                                        $closeTech = "Hey Tech, the ticket $description has been closed";
-                                        mail($to, $closeSubject, $subject);
-                                        mail($tech, $closeSubject, $closeTech);
-                                    ?>
+				function closeConfirm(){
 					var Confirmed = confirm ("Do you want to close this ticket?");
-					if (Confirmed) {
-						var ConfirmedCeption = alert ("Case closed! \nPress Return to go back.");
-						if (ConfirmedCeption) {
-							//Page redirecting is not working :( Currently leaving it here.
-							location.replace('http://google.com');
-						}				 
-					}
+					if (Confirmed == true) {
+					    var ConfirmedCeption = alert ("Case closed! \nPress Return to go back.");
+						<?php
+                                                    $to = $email;
+                                                    $tech = 'akrause3@mail.greenriver.edu';
+                                                    $closeSubject = "Ticket Closed";
+                                                    $closeSubmitter = "Your ticket $description has been closed";
+                                                    $closeTech = "Hey Tech, the ticket $description has been closed";
+                                                    mail($to, $closeSubject, $subject);
+                                                    mail($tech, $closeSubject, $closeTech);
+                                                ?>
+                                                window.location.replace("closeTicket.php?ticketid=<?php echo $id; ?>");
+                                            return true;
+					}				 
+                                        else if(Confirmed == false){
+                                            
+                                            return false;
+                                        }
 				}
 			</script>
     </div>
