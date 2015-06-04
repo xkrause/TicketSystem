@@ -177,7 +177,7 @@
         }
         ?>
     
-           <form action='view.php?ticketid=<?php echo $id; ?>' method='post'>
+           <form action='view.php?ticketid=<?php echo $id; ?>' method='post' onsubmit='return submissionConfirm()'>
                 <div class='col-xs-6'>PCID:<input type='text' class="form-control" name='pcid'></div>
                 <div class='col-xs-6'>StateID:<input type='text' class="form-control" name='stid'></div><br>
                 <div class='col-xs-6'>Assign a Technician:
@@ -238,6 +238,20 @@
                                             return false;
                                         }
 				}
+                                
+
+		//The confirmation box
+		function submissionConfirm() {
+		    var Confirmed = confirm ("Are you sure you want to commit these changes?");
+			if (Confirmed == true) {
+                            alert("Your changes have been submitted.");
+                            return true;
+			}
+			else{
+                            return false;
+			}
+		}				
+	    </script>
 			</script>
     </div>
 </body>

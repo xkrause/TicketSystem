@@ -145,7 +145,7 @@
     <img src="images/grcicon.png" alt="greenriver college icon"><span id="title" style="font-size: 3em;">Green River College Online Ticket Form</span>
     <div class="container">
         <div class="jumbotron">
-            <form method="post" action="#" onsubmit="submissionConfirm()">
+            <form method="post" action="#" onsubmit="return submissionConfirm()">
                 <!--putting the form into a div for styling purposes-->
                 <div id="ticketInfo">
                     <input type="text" required placeholder="First Name" name="fname" class="form-control" 
@@ -191,20 +191,20 @@
                     <input name="submit" type="submit" value="Submit" >
                 </div>
             </form>
-			
-				<script>
-				//The confirmation box
-				function submissionConfirm() {
-					var Confirmed = confirm ("Do you want to submit your ticket?");
-					if (Confirmed) {
-						var ConfirmedCeption = alert ("Your ticket has been submitted!");
-						}
-						else
-							return false;
-					}				
-			</script>
+	    <script>
+		//The confirmation box
+		function submissionConfirm() {
+		    var Confirmed = confirm ("Do you want to submit your ticket?");
+			if (Confirmed == true) {
+                            alert("Your ticket has been submited.");
+                            return true;
+			}
+			else{
+                            return false;
+			}
+		}				
+	    </script>
         </div>
     </div>
 	
-
 </body>
