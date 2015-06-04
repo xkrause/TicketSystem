@@ -80,6 +80,18 @@
 <body>
 
     <h1 id="adminGreeting">Welcome, Administrator!</h1>
+    
+    <form action="#" method="POST" id="formToggle">
+	    <?php if($_POST['toggler'] == ''){
+            echo "<input type='radio' name='toggler' id ='toggleClosed' value='toggle' checked></input>";
+            ?> <h3><?php echo "You are now viewing open tickets"?> </h3> <br> <?php;
+            echo "<input type='submit' value='Show Closed' class = 'btn btn-default'>";
+        }elseif($_POST['toggler'] == 'toggle'){
+            echo "<input type='radio' name='toggler' id = 'toggleOpen' value='' checked></input>";
+            ?> <h3><?php echo "You are now viewing closed tickets"?> </h3> <br> <?php;
+            echo "<input type='submit' value='Show Open' class = 'btn btn-default'>";
+        } ?>
+	</form>
    
     <?php
     //print_r($_POST['toggler']); 
@@ -164,17 +176,6 @@
     </table>    
     </div>
     <?php } ?>
-	
-     <form action="#" method="POST">
-	    <?php if($_POST['toggler'] == ''){
-            echo "<input type='radio' name='toggler' id ='toggleClosed' value='toggle' checked></input>";
-            echo "<input type='submit' value='Show Closed'>";
-        }elseif($_POST['toggler'] == 'toggle'){
-            echo "<input type='radio' name='toggler' id = 'toggleOpen' value='' checked></input>";
-            echo "<input type='submit' value='Show Open'>";
-        } ?>
-	</form>
-		
     <div class="jumbotron">   
 		<div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
@@ -193,7 +194,7 @@
 	    window.location = "logout.php";
 	});
         
-       /* if (closeAlert == true) {
+       /*if (closeAlert == true) {
             <?php
             $close;
             ?>

@@ -80,19 +80,19 @@
 
     <h1 id="adminGreeting">Welcome, Technician!</h1>
     
-    <form action="#" method="POST">
-        
-        <?php if($_POST['toggler'] == ''){
-            echo "<input type='radio' name='toggler' value='toggle'></input>";
-            echo "<input type='submit' value='Show Closed'>";
+    <form action="#" method="POST" id="formToggle">
+	    <?php if($_POST['toggler'] == ''){
+            echo "<input type='radio' name='toggler' id ='toggleClosed' value='toggle' checked></input>";
+            ?> <h3><?php echo "You are now viewing open tickets"?> </h3> <br> <?php;
+            echo "<input type='submit' value='Show Closed' class = 'btn btn-default'>";
         }elseif($_POST['toggler'] == 'toggle'){
-            echo "<input type='radio' name='toggler' value=''></input>";
-            echo "<input type='submit' value='Show Open'>";
+            echo "<input type='radio' name='toggler' id = 'toggleOpen' value='' checked></input>";
+            ?> <h3><?php echo "You are now viewing closed tickets"?> </h3> <br> <?php;
+            echo "<input type='submit' value='Show Open' class = 'btn btn-default'>";
         } ?>
-        
-        </form>
+	</form>
     <?php
-    
+    /*
     foreach ($result as $row) { ?>
         <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
@@ -132,8 +132,8 @@
     </table>    
     </div>
     <?php } ?>
-    
-    <!--<div class="jumbotron">
+    */
+    foreach($result as $row) { ?>
     <table id = "craigk_ticket" class="table table-bordered table-hover table-striped">
         <thead>
             <tr id="label">
@@ -170,11 +170,14 @@
             <?php } ?>
         </tbody>
     </table>    
-    </div>-->
+    </div>
+    <?php } ?>
+    <div class = "jumbotron">
     <div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
 	<button type="button" id="logout" class="btn btn-default">Log Out</button>
         <h3>Submit a ticket <a href="ticket.php">here</a></h3>
+    </div>
     </div>
 </body>
 <script>
@@ -188,9 +191,9 @@
 	    window.location = "logout.php";
 	});
         
-        if (closeAlert == true) {
+        /*if (closeAlert == true) {
             <?php
             $close;
             ?>
-        }
+        }*/
 </script>

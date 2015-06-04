@@ -51,6 +51,10 @@ thead {
     visibility: hidden;
 }
 
+#formToggle {
+    text-align:center;
+}
+
 /*
  *color coding isn't being used
  *
