@@ -59,9 +59,10 @@
         $tech = 'akrause3@mail.greenriver.edu';
         $subject = "Hello $firstName! \nThank you for submitting your ticket. \nDescription: $description. \nA technician will contact you shortly.";
         $techSubject = "A new ticket has been submitted. \n$firstName $lastName ($domain) \n $description. \n Priority is $urgency. \n Contact $firstName at $email. \n View ticket at http:/xanderkrause.greenrivertech.net/login.php";
-        $message = 'An email dialog has been created.';
+        $message = "Your Ticket Submission";
+        $techMessage = "New Ticket Submission";
         mail($to, $message, $subject);
-        mail($tech, $message, $techSubject);
+        mail($tech, $techMessage, $techSubject);
         
         //confirmation of submission 
         }

@@ -147,6 +147,15 @@
            <script>
 				//The confirmation box
 				function closeConfirm() {
+                                    <?php
+                                        $to = $_POST['email'];
+                                        $tech = 'akrause3@mail.greenriver.edu';
+                                        $closeSubject = "Ticket Closed";
+                                        $closeSubmitter = "Your ticket $description has been closed";
+                                        $closeTech = "Hey Tech, the ticket $description has been closed";
+                                        mail($to, $closeSubject, $subject);
+                                        mail($tech, $closeSubject, $techSubject);
+                                    ?>
 					var Confirmed = confirm ("Do you want to close this ticket?");
 					if (Confirmed) {
 						var ConfirmedCeption = alert ("Case closed! \nPress Return to go back.");
