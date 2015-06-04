@@ -13,6 +13,14 @@
     $sql = "UPDATE `craigk_ticket`.`Tickets` SET active='1' WHERE ticketid='$id'";
     $conn->query($sql);
     
-    $current_page = $_SERVER['HTTP_REFERER'];
-    header("location: $current_page");
+    if($_SESSION['accessLevel']=='1'){
+        $previous_page="techLanding.php";
+    }elseif($_SESSION['accessLevel']=='2'){
+        $previous_page="admin.php";
+    }
+    
+    
+    $previous_page=
+    
+    header("location: $previous_page");
 ?>

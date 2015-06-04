@@ -235,7 +235,6 @@
                                             return true;
 					}				 
                                         else if(Confirmed == false){
-                                            
                                             return false;
                                         }
 				}
