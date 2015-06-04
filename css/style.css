@@ -47,6 +47,10 @@ thead {
     max-width: 200px;
 }
 
+#toggleClosed, #toggleOpen {
+    visibility: hidden;
+}
+
 /*
  *color coding isn't being used
  *

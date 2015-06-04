@@ -80,18 +80,7 @@
 <body>
 
     <h1 id="adminGreeting">Welcome, Administrator!</h1>
-    <form action="#" method="POST">
-        
-        <?php if($_POST['toggler'] == ''){
-            echo "<input type='radio' name='toggler' value='toggle'></input>";
-            echo "<input type='submit' value='Show Closed'>";
-        }elseif($_POST['toggler'] == 'toggle'){
-            echo "<input type='radio' name='toggler' value=''></input>";
-            echo "<input type='submit' value='Show Open'>";
-        } ?>
-    
-
-    </form>
+   
     <?php
     //print_r($_POST['toggler']); 
     /*foreach ($closeResult as $row) { ?>
@@ -175,12 +164,19 @@
     </table>    
     </div>
     <?php } ?>
-    
-    <div class="jumbotron">
-        <a href = "http://xanderkrause.greenrivertech.net/admin.php?view=closed">View Closed Tickets</a>
-    
-    
-    <div id="ticketInfo">
+	
+     <form action="#" method="POST">
+	    <?php if($_POST['toggler'] == ''){
+            echo "<input type='radio' name='toggler' id ='toggleClosed' value='toggle' checked></input>";
+            echo "<input type='submit' value='Show Closed'>";
+        }elseif($_POST['toggler'] == 'toggle'){
+            echo "<input type='radio' name='toggler' id = 'toggleOpen' value='' checked></input>";
+            echo "<input type='submit' value='Show Open'>";
+        } ?>
+	</form>
+		
+    <div class="jumbotron">   
+		<div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
 	<button type="button" id="logout" class="btn btn-default">Log Out</button>
         <h3>Submit a ticket <a href="ticket.php">here</a></h3>

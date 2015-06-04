@@ -198,12 +198,10 @@
 					var Confirmed = confirm ("Do you want to submit your ticket?");
 					if (Confirmed) {
 						var ConfirmedCeption = alert ("Your ticket has been submitted!");
-						if (ConfirmedCeption) {
-							//Page redirecting is not working :( Currently leaving it here.
-							location.replace('http://google.com');
-						}				 
-					}
-				}
+						}
+						else
+							return false;
+					}				
 			</script>
         </div>
     </div>
