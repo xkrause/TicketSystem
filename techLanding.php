@@ -3,16 +3,10 @@
     //require login info
     require 'dbts.php';
     //redirect if you do not have the credentials
-    if($_SESSION['accessLevel'] != '1' || $_SESSION['accessLevel'] != '2'){
-        //header("Location: login.php");
+    if($_SESSION['accessLevel'] != '1'){
+        header("Location: login.php");
     }
 
-    /*this example was obtained from http://www.w3schools.com/php/php_mysql_select.asp
-    $username = "craigk_ts";
-    $password = "Password02";
-    $hostname = "localhost";
-    $dbname = "craigk_ticket";*/
-    
     //create the connection
     $conn = new mysqli($hostname, $username, $password, $dbname);
     
