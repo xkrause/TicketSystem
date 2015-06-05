@@ -226,9 +226,9 @@
                                                     $to = $email;
                                                     $tech = 'akrause3@mail.greenriver.edu';
                                                     $closeSubject = "Ticket Closed";
-                                                    $closeSubmitter = "Your ticket $description has been closed";
-                                                    $closeTech = "Hey Tech, the ticket $description has been closed";
-                                                    mail($to, $closeSubject, $subject);
+                                                    $closeSubmitter = "Your ticket $tid has been closed";
+                                                    $closeTech = "Hey Tech, the ticket $tid has been closed";
+                                                    mail($to, $closeSubject, $closeSubmitter);
                                                     mail($tech, $closeSubject, $closeTech);
                                                 ?>
                                                 window.location.replace("closeTicket.php?ticketid=<?php echo $id; ?>");
@@ -251,7 +251,6 @@
                             return false;
 			}
 		}				
-	    </script>
-			</script>
+        </script>
     </div>
 </body>

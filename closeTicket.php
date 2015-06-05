@@ -25,8 +25,5 @@
         $previous_page="admin.php";
     }
     
-    
-    $previous_page=
-    
     header("location: $previous_page");
 ?>

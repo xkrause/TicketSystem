@@ -100,7 +100,6 @@
             <td>Email</td>
             <td>Domain</td>
 	    <td>Date Submitted</td>
-            <td>Last Updated
             <td>Closed</td>
             <td>PC ID</td>
             <td>State ID</td>
@@ -116,7 +115,6 @@
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['domain']; ?></td>
                     <td><?php echo $row['date submitted']; ?></td>
-                    <td><?php echo $row['lastUpdated']; ?></td>
                     <td><?php echo $row['closed']; ?></td>
                     <td><?php echo $row['pcid']; ?></td>
                     <td><?php echo $row['stateid']; ?></td>
