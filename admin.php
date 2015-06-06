@@ -6,15 +6,13 @@
         header("Location: login.php");
     }
     
-    //create the connection. error if unsuccessful.
-    $conn = new mysqli($hostname, $username, $password, $dbname);
-    
     //check the connection
-    if ($conn->connect_error){
-        die("Connection failed: " . $conn->connect_error);
-    }
-    else{
-        //echo "Success";
+    try {
+            $dbh = new PDO("mysql:host=$hostname;
+                           dbname=craigk_ticket", $username, $password);
+            //echo "Connected to database.";
+        } catch (PDOException $e) {
+            echo $e->getMessage();
     }
     
     if($_POST['toggler'] == "toggle"){
@@ -23,9 +21,9 @@
     $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active != 1";
     //$closeResult = $conn->query($sql);
     }
-    $result = $conn->query($sql);
+    $result = $dbh->query($sql);
     
-    $conn->close();
+    $dbh->close();
 ?>
 
 <head>
