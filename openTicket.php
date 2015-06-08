@@ -21,19 +21,16 @@
     //pull the ticketid from the url using a get
     $id = $_GET['ticketid'];
     
-    //query to access the database for the selected ticekt ,run the query to modify the open/closed status for the ticket
+    //query to access the database for the selected ticekt and run the query
     $sql = "UPDATE `craigk_ticket`.`Tickets` SET active='1' WHERE ticketid='$id'";
     $dbh->query($sql);
     
-    //get the time from the server and format it to fit our desire for accuracy.(hours minutes second included)
-    $date = new DateTime();
-    $dateFormatted=$date->format('Y-m-d H:i:s');
+    //query to access the database for the selected ticekt ,run the query to modify the open/closed status for the ticket
+    $sql = "UPDATE `craigk_ticket`.`Tickets` SET active='0' WHERE ticketid='$id'";
+    $dbh->query($sql);
     
-    //update the closed value for the ticket to include the time
-    $sql2 = "UPDATE `craigk_ticket`.`Tickets` SET closed='$dateFormatted' WHERE ticketid='$id'";
-    $dbh->query($sql2);
     
-    //redirect back to the users page after ticket is closed
+    //redirect back to the relevant page after ticket is reopened
     if($_SESSION['accessLevel']=='1'){
         $previous_page="techLanding.php";
     }elseif($_SESSION['accessLevel']=='2'){

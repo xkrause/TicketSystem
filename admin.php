@@ -6,7 +6,7 @@
         header("Location: login.php");
     }
     
-    //check the connection
+    //establish the connection to the database
     try {
             $dbh = new PDO("mysql:host=$hostname;
                            dbname=craigk_ticket", $username, $password);
@@ -16,14 +16,11 @@
     }
     
     if($_POST['toggler'] == "toggle"){
-    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active = 1";
+    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted`, closed, pcid, stateid FROM `craigk_ticket` . `Tickets` WHERE active = 1";
     }else{
-    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active != 1";
-    //$closeResult = $conn->query($sql);
+    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted`, closed, pcid, stateid FROM `craigk_ticket` . `Tickets` WHERE active != 1";
     }
-    $result = $dbh->query($sql);
-    
-    $dbh->close();
+    $result = $dbh->query($sql);   
 ?>
 
 <head>
@@ -32,8 +29,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- DataTables CSS -->
@@ -112,11 +108,12 @@
     </table>    
     </div>
     <?php } ?>
-    <div class="jumbotron">   
+        <div class="jumbotron">   
 		<div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
 	<button type="button" id="logout" class="btn btn-default">Log Out</button>
         <h3>Submit a ticket <a href="ticket.php">here</a></h3>
+    </div>
     </div>
 </body>
 <script>

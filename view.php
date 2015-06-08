@@ -24,7 +24,7 @@
     $id=$_GET['ticketid'];
     
     //sql statment to access the information about the ticket
-    $sql = "SELECT `Tickets`.ticketid, `Tickets`.firstname, `Tickets`.lastname, `Tickets`.urgency, `Tickets`.description, `Tickets`.email, `Tickets`.domain, `Tickets`.`date submitted`, `notes`.note, `Tickets`.pcid, `Tickets`.stateid, `Tickets`.catagories, `Tickets`.assignedtech
+    $sql = "SELECT `Tickets`.ticketid, `Tickets`.firstname, `Tickets`.lastname, `Tickets`.urgency, `Tickets`.description, `Tickets`.email, `Tickets`.domain, `Tickets`.`date submitted`, `notes`.note, `Tickets`.pcid, `Tickets`.stateid, `Tickets`.catagories, `Tickets`.assignedtech, `Tickets`.active
             FROM `craigk_ticket` . `Tickets`
             LEFT JOIN `craigk_ticket` . `notes`
             ON `Tickets`.ticketid = `notes`.`ticketid`
@@ -48,6 +48,7 @@
         $stid=$row['stateid'];
         $catagory=$row['catagories'];
         $technician=$row['assignedtech'];
+        $status=$row['active'];
     }
     
     //query to get a list of the possible technicians in the system
@@ -207,7 +208,15 @@
             </div>
            </form>
            <br>
-           <button class="btn btn-default" onclick='closeConfirm()'>Close Ticket</button>
+            <?php
+                if($status == 0){
+                    echo "<button class='btn btn-default' onclick='closeConfirm()'>Close Ticket</button>";
+                }
+                elseif($status == 1){
+                    echo "<button class='btn btn-default' onclick='openConfirm()'>Open Ticket</button>";
+                }
+            ?>
+           
            <a href='<?php if($_SESSION['accessLevel'] == '1'){
                               echo "techLanding.php";
                           }
@@ -219,7 +228,7 @@
 	           <script>
 				//The confirmation box
 				function closeConfirm(){
-					var Confirmed = confirm ("Do you want to close this ticket?");
+					var Confirmed = confirm ("Do you want to CLOSE this ticket?");
 					if (Confirmed == true) {
 					    var ConfirmedCeption = alert ("Case closed! \nPress Return to go back.");
 						<?php
@@ -238,6 +247,16 @@
                                             return false;
                                         }
 				}
+                                
+                                function openConfirm(){
+                                    var reopen = confirm("Do you want to REOPEN this ticket?");
+                                    if (reopen == true) {
+                                        window.location.replace("openTicket.php?ticketid=<?php echo $id; ?>");
+                                        return true;
+                                    }else if(reopen = false){
+                                        return false;
+                                    }
+                                }
                                 
 
 		//The confirmation box

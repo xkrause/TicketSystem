@@ -6,37 +6,22 @@
     if($_SESSION['accessLevel'] != '1'){
         header("Location: login.php");
     }
-
-    //create the connection
-    $conn = new mysqli($hostname, $username, $password, $dbname);
     
-    //check the connection
-    if ($conn->connect_error){
-        die("Connection failed: " . $conn->connect_error);
-    }
-    else{
-        //echo "Success";
+    //establish the connection to the database
+    try {
+            $dbh = new PDO("mysql:host=$hostname;
+                           dbname=craigk_ticket", $username, $password);
+            //echo "Connected to database.";
+        } catch (PDOException $e) {
+            echo $e->getMessage();
     }
     
     if($_POST['toggler'] == "toggle"){
-    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active = 1";
+    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted`, closed, pcid, stateid FROM `craigk_ticket` . `Tickets` WHERE active = 1";
     }else{
-    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted` FROM `craigk_ticket` . `Tickets` WHERE active != 1";
-    //$closeResult = $conn->query($sql);
+    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted`, closed, pcid, stateid FROM `craigk_ticket` . `Tickets` WHERE active != 1";
     }
-    $result = $conn->query($sql);
-    
-    /*if ($result->num_rows > 0){
-        //output the data of each row
-        while($row = $result->fetch_assoc()){
-            echo "First Name: " . $row['firstname'] . " Last Name: " . $row['lastname'] . "<br>";
-        }
-    }
-    else {
-        echo "0 results";
-    }*/
-    
-    $conn->close();
+    $result = $dbh->query($sql);
 ?>
 
 <head>
