@@ -59,7 +59,7 @@
     
     print_r($_POST);
     if($_POST['sendEmail'] == 'yes'){
-        if(!empty($_post['sendEmailContent'])){
+        if(!empty($_POST['sendEmailContent'])){
             $emailMessage = $_POST['sendEmailContent'];
             //send email notification to ticket submitter and technician if one is assigned
             $to = $email;
