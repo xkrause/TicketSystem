@@ -57,15 +57,27 @@
     //save the results of the above query
     $techs = $dbh->query($fixer);
     
+    print_r($_POST);
+    if($_POST['sendEmail'] == 'yes'){
+        if(!empty($_post['sendEmailContent'])){
+            $emailMessage = $_POST['sendEmailContent'];
+            //send email notification to ticket submitter and technician if one is assigned
+            $to = $email;
+            $tech = $technician;
+            $closeSubject = "Ticket Submission Update";
+            $closeSubmitter = $emailMessage . "\nDescription: $des\nTicket ID: $tid";
+            $closeTech = "An email has been sent to the submitter of ticket id: $tid";
+            mail($to, $closeSubject, $closeSubmitter);
+            mail($tech, $closeSubject, $closeTech);
+        }
+    }
+    
     //if there is a post variable notes....
     if (!empty($_POST['notes']) or !empty($_POST['pcid']) or !empty($_POST['stid'])){
         
         //gets the server time and formats it for display
         $date = new DateTime();
         $dateFormatted=$date->format('Y-m-d H:i:s');
-        
-        //save state id and pc id into variabls to be antered into query later
-
         
         //get the current user ID into the page from login to insert into ticket information
         $identity=$_SESSION['identity'];
@@ -123,6 +135,7 @@
         $statement->execute();
         $statement2->execute();
         $statement3->execute();
+        
     }
     
     //sql query to access the notes of the selected ticket
@@ -204,6 +217,8 @@
                 <textarea name="notes" rows="8" cols="50" id = "notes" maxlength = "1000" require placeholder="1000 character limit." class="form-control"></textarea>
                 <div id="textarea_feedback"></div>
                 <br>
+                <label><input type='checkbox' name='sendEmail' value='yes'  id='display'>Send Email when submitting</label>
+                <div id='sendEmailContent'><textarea name='sendEmailContent' rows='2'  class="form-control"></textarea><i>(This will only notify a technician if one has been assigned.)</i></div>
                 <input name="submit" type="submit" value="Submit" class="btn btn-default" style='float: right;'>
             </div>
            </form>
@@ -226,39 +241,32 @@
                     ?>'><button class="btn btn-default" style='float: left;'>Return</button></a>
            <br><br>
 	         <script>
-				//The confirmation box
-<<<<<<< HEAD
-                                    function closeConfirm(){
-					var Confirmed = confirm ("Do you want to CLOSE this ticket?");
-=======
-				function closeConfirm(){
-					var Confirmed = confirm ("Are you sure you want to CLOSE this ticket?");
->>>>>>> 7d2383903d4e264d2103a459c8673f3123e0ea46
-					if (Confirmed == true) {
-					    var ConfirmedCeption = alert ("Ticket Closed!");
-						
-                                                window.location.replace("closeTicket.php?ticketid=<?php echo $id; ?>");
-                                            return true;
-					}				 
-                                        else if(Confirmed == false){
-                                            return false;
-                                        }else{
-                                            return false;
-                                        }
-				}
-				
-                                
-                                function openConfirm(){
-                                    var reopen = confirm("Do you want to REOPEN this ticket?");
-                                    if (reopen == true) {
-                                        window.location.replace("openTicket.php?ticketid=<?php echo $id; ?>");
-                                        return true;
-                                    }else if(reopen == false){
-                                        return false;
-                                    }else{
-                                        return false;
-                                    }
+		    //The confirmation box
+                    function closeConfirm(){
+			var Confirmed = confirm ("Are you sure you want to CLOSE this ticket?");
+                            if (Confirmed == true) {
+				var ConfirmedCeption = alert ("Ticket Closed!");
+                                    window.location.replace("closeTicket.php?ticketid=<?php echo $id; ?>");
+                                    return true;
+				}				 
+                                else if(Confirmed == false){
+                                    return false;
+                                }else{
+                                    return false;
                                 }
+			    }
+				
+                            function openConfirm(){
+                                var reopen = confirm("Do you want to REOPEN this ticket?");
+                                if (reopen == true) {
+                                    window.location.replace("openTicket.php?ticketid=<?php echo $id; ?>");
+                                    return true;
+                                }else if(reopen == false){
+                                    return false;
+                                }else{
+                                    return false;
+                                }
+                            }
                                 
 
 		//The confirmation box
@@ -271,7 +279,20 @@
 			else{
                             return false;
 			}
-		}				
+		}
+                
+                $(document).ready(function(){
+                    $('#sendEmailContent').hide();
+                });
+                
+                $("#display").click(function(){
+                    if ($('#sendEmailContent').css('display') == 'none') {
+                        $("#sendEmailContent").show();
+                    }else{
+                        $("#sendEmailContent").hide();
+                    }
+                });
+                
         </script>
     </div>
 </body>
