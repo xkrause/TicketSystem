@@ -190,9 +190,9 @@
         }
         ?>
     
-           <form action='view.php?ticketid=<?php echo $id; ?>' method='post' onsubmit='return submissionConfirm()'>
+           <form action='view.php?ticketid=<?php echo $id; ?>' method='post' onsubmit='return submissionConfirm()' onsubmit='return stripTags()'>
                 <div class='col-xs-6'>PCID:<input type='text' class="form-control" name='pcid'></div>
-                <div class='col-xs-6'>StateID:<input type='text' class="form-control" name='stid'></div><br>
+                <div class='col-xs-6'>StateID:<input type='text' class="form-control" name='stid' pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6}"></div><br> 
                 <div class='col-xs-6'>Assign a Technician:
                     <select name="technician" class="form-control">
                             <option selected="selected" disabled="disabled" value="">- Assign Technician - </option>
@@ -292,6 +292,11 @@
                     }
                 });
                 
+         function stripTags() {
+             alert("Strippin' them tags.");
+            pcid = pcid.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            stid = stid.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+         }
         </script>
     </div>
 </body>
