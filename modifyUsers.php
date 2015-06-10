@@ -105,13 +105,13 @@
             <label><input type='radio' name='option' value='ChangePassword' id='ChangePassword' > Change Password</label><br>
             <br>
             <div id='fieldAdd' class="form-group">
-                Enter new users username:<input type='text' name='newUser' class="form-control" required pattern = "[^@]+@greenriver.edu"
+                Enter new users username:<input type='text' name='newUser' class="form-control" pattern = "[^@]+@greenriver.edu"
 					title="Please use an email with greenriver.edu domain.">
                 Enter new users password:
 				<i>(password must contain <b>AT LEAST</b> one capital letter, one lowercase letter, one number, and one special character <b>AND</b> be no longet or shorter than 8 characters)
-				<input type='text' name='newPassword' class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}">
+				<input type='text' name='newPassword' class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}">
                 Select their permissions:
-                <select name='accessLevel' class='form-control' required>
+                <select name='accessLevel' class='form-control'>
 				    <option selected="selected" disabled="disabled" value="">- Permission - </option>
                     <option value='1'>Technician</option>
                     <option value='2'>Administrator</option>
@@ -119,7 +119,7 @@
             </div>
             <div id='fieldChange' class="form-group">
                 Select a user to change:
-                <select name='selectUserChange' class='form-control' required>
+                <select name='selectUserChange' class='form-control'>
 					<option selected="selected" disabled="disabled" value="">- Change User - </option>
                     <?php
                         foreach($techs as $row){
@@ -128,7 +128,7 @@
                     ?>
                 </select>
                 Set privilages to:
-                <select name='accessLevel' class='form-control' required>
+                <select name='accessLevel' class='form-control'>
 					<option selected="selected" disabled="disabled" value="">- Permission - </option>
                     <option value="1">Technician</option>
                     <option value="2">Administrator</option>
@@ -136,7 +136,7 @@
             </div>
             <div id='fieldRemove' class="form-group">
                 Select the user to be removed:
-                <select name='selectUserRemove' class='form-control'  required>
+                <select name='selectUserRemove' class='form-control'>
 					<option selected="selected" disabled="disabled" value="">- Remove User - </option>
                     <?php
                         foreach($techs2 as $row){
@@ -147,7 +147,7 @@
             </div>
             <div id='fieldPassword' class="form-group">
                 Select the users to change their password:
-                <select name='selectUserPassword' class='form-control' required>
+                <select name='selectUserPassword' class='form-control'>
 					<option selected="selected" disabled="disabled" value="">- Select User - </option>
                     <?php
                         foreach($techs3 as $row){
@@ -156,7 +156,7 @@
                     ?>
                 </select>
                 Enter the users new password:<i>(password must contain <b>AT LEAST</b> one capital letter, one lowercase letter, one number, and one special character <b>AND</b> be no longet or shorter than 8 characters)</i>
-				<input type='text' name='updatePassword' class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}">
+				<input type='text' name='updatePassword' class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}">
             </div>
             <br>
             <input type='submit' name='submit' value='submit' class="btn btn-default">
