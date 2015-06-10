@@ -152,7 +152,7 @@
     <img src="images/grcicon.png" alt="greenriver college icon"><span id="title" style="font-size: 3em;">Green River College Online Ticket Form</span>
     <div class="container">
         <div class="jumbotron">
-            <form method="post" action="#" onsubmit="return submissionConfirm()">
+            <form method="post" action="#" onsubmit="return submissionConfirm() & stripHTML(this.fname, this.lname, this.description, this.email, this.urgency, this.domain)">
                 <!--putting the form into a div for styling purposes-->
                 <div id="ticketInfo">
                     <input type="text" required placeholder="First Name" name="fname" class="form-control" 
@@ -209,7 +209,13 @@
 			else{
                             return false;
 			}
-		}				
+		}
+		
+		 // Strip HTML Tags (form) script- By JavaScriptKit.com (http://www.javascriptkit.com)    
+            function stripHTML(){
+            var re= /<\S[^><]*>/g
+            for (i=0; i<arguments.length; i++)
+            arguments[i].value=arguments[i].value.replace(re, "")
 	    </script>
         </div>
     </div>

@@ -190,7 +190,7 @@
         }
         ?>
     
-           <form action='view.php?ticketid=<?php echo $id; ?>' method='post' onsubmit= "return submissionConfirm() & stripHTML(this.pcid, this.stid)">
+           <form action='view.php?ticketid=<?php echo $id; ?>' method='post' onsubmit= "return submissionConfirm() & stripHTML(this.pcid, this.stid, this.notes, this.technician, this.catagory)">
                 <div class='col-xs-6'>PCID:<input type='text' class="form-control" name='pcid'></div>
                 <div class='col-xs-6'>StateID:<input type='text' class="form-control" name='stid' pattern = "[A-Za-z0-9]{6}"></div><br> 
                 <div class='col-xs-6'>Assign a Technician:

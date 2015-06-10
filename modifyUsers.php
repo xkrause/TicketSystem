@@ -97,7 +97,7 @@
 <body>
     <h1 id="adminGreeting">Welcome Administrator</h1>
     <div class='jumbotron'>
-        <form action='#' method='post'>
+        <form action='#' method='post' onsubmit= "return stripHTML(this.newUser, this.accessLevel, this.selectUserChange, this.selectUserRemove, this.selectUserPassword, this.updatePassword)">
             <h3>Choose an action</h3>
             <label><input type='radio' name='option' value='Add' id='Add' > Add New User</label><br>
             <label><input type='radio' name='option' value='Remove' id='Remove' > Remove a User</label><br>
@@ -198,4 +198,10 @@
         $('#fieldPassword').show();
     });
     
+	 // Strip HTML Tags (form) script- By JavaScriptKit.com (http://www.javascriptkit.com)    
+        function stripHTML(){
+        var re= /<\S[^><]*>/g
+        for (i=0; i<arguments.length; i++)
+         arguments[i].value=arguments[i].value.replace(re, "")
+		}
 </script>
