@@ -57,7 +57,6 @@
     //save the results of the above query
     $techs = $dbh->query($fixer);
     
-    print_r($_POST);
     if($_POST['sendEmail'] == 'yes'){
         if(!empty($_POST['sendEmailContent'])){
             $emailMessage = $_POST['sendEmailContent'];

@@ -159,9 +159,10 @@
 				<input type='text' name='updatePassword' class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}">
             </div>
             <br>
-            <input type='submit' name='submit' value='submit' class="btn btn-default">
+            <input type='submit' name='submit' value='submit' class="btn btn-default"><br><br>
         </form>
     </div>
+    <a href="admin.php"><button class="btn btn-default" style='float: left;'>Return</button></a>
 </body>
 <script>
     
