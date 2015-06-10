@@ -111,7 +111,7 @@
         <div class="jumbotron">   
 		<div id="ticketInfo">
         <!--<h3>List of tickets that have been submitted:</h3>-->
-	<button type="button" id="logout" class="btn btn-default">Log Out</button>
+	<button type="button" id="logout" class="btn btn-default">Log Out</button><button type="button" id="modify" class="btn btn-default">User Account Controls</button>
         <h3>Submit a ticket <a href="ticket.php">here</a></h3>
     </div>
     </div>
@@ -128,6 +128,11 @@
         //redirects to logout.php to close the session and route to login.php
 	$("#logout").click(function(){
 	    window.location = "logout.php";
+	});
+        
+        //redirects to modifyUsers.php to access user account controls
+	$("#modify").click(function(){
+	    window.location = "modifyUsers.php";
 	});
         
         //when class tr is clicked link to that rows id in the view.php page
