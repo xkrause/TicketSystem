@@ -227,23 +227,22 @@
            <br><br>
 	         <script>
 				//The confirmation box
+<<<<<<< HEAD
                                     function closeConfirm(){
 					var Confirmed = confirm ("Do you want to CLOSE this ticket?");
+=======
+				function closeConfirm(){
+					var Confirmed = confirm ("Are you sure you want to CLOSE this ticket?");
+>>>>>>> 7d2383903d4e264d2103a459c8673f3123e0ea46
 					if (Confirmed == true) {
-					    var ConfirmedCeption = alert ("Case closed! \nPress Return to go back.");
-						<?php
-                                                    $to = $email;
-                                                    $tech = 'akrause3@mail.greenriver.edu';
-                                                    $closeSubject = "Ticket Closed";
-                                                    $closeSubmitter = "Your ticket has been closed. \nDescription: $des\nTicket ID: $tid";
-                                                    $closeTech = "A ticket has been closed.\nDescription: $des\nTicket ID: $tid";
-                                                    mail($to, $closeSubject, $closeSubmitter);
-                                                    mail($tech, $closeSubject, $closeTech);
-                                                ?>
+					    var ConfirmedCeption = alert ("Ticket Closed!");
+						
                                                 window.location.replace("closeTicket.php?ticketid=<?php echo $id; ?>");
                                             return true;
 					}				 
                                         else if(Confirmed == false){
+                                            return false;
+                                        }else{
                                             return false;
                                         }
 				}
@@ -254,7 +253,9 @@
                                     if (reopen == true) {
                                         window.location.replace("openTicket.php?ticketid=<?php echo $id; ?>");
                                         return true;
-                                    }else if(reopen = false){
+                                    }else if(reopen == false){
+                                        return false;
+                                    }else{
                                         return false;
                                     }
                                 }
