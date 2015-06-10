@@ -190,9 +190,9 @@
         }
         ?>
     
-           <form action='view.php?ticketid=<?php echo $id; ?>' method='post' onsubmit='return submissionConfirm()' onsubmit='return stripTags()'>
+           <form action='view.php?ticketid=<?php echo $id; ?>' method='post' onsubmit= "return submissionConfirm() & stripHTML(this.pcid, this.stid)">
                 <div class='col-xs-6'>PCID:<input type='text' class="form-control" name='pcid'></div>
-                <div class='col-xs-6'>StateID:<input type='text' class="form-control" name='stid' pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6}"></div><br> 
+                <div class='col-xs-6'>StateID:<input type='text' class="form-control" name='stid' pattern = "[A-Za-z0-9]{6}"></div><br> 
                 <div class='col-xs-6'>Assign a Technician:
                     <select name="technician" class="form-control">
                             <option selected="selected" disabled="disabled" value="">- Assign Technician - </option>
@@ -291,12 +291,13 @@
                         $("#sendEmailContent").hide();
                     }
                 });
-                
-         function stripTags() {
-             alert("Strippin' them tags.");
-            pcid = pcid.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            stid = stid.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-         }
+               
+        // Strip HTML Tags (form) script- By JavaScriptKit.com (http://www.javascriptkit.com)    
+            function stripHTML(){
+            var re= /<\S[^><]*>/g
+            for (i=0; i<arguments.length; i++)
+            arguments[i].value=arguments[i].value.replace(re, "")
+}
         </script>
     </div>
 </body>
