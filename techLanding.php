@@ -17,11 +17,13 @@
     }
     
     if($_POST['toggler'] == "toggle"){
-    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted`, closed, pcid, stateid FROM `craigk_ticket` . `Tickets` WHERE active = 1";
+	$sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted`, closed, pcid, stateid FROM `craigk_ticket` . `Tickets` WHERE active = 1";
     }else{
-    $sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted`, closed, pcid, stateid FROM `craigk_ticket` . `Tickets` WHERE active != 1";
+	$sql = "SELECT ticketid, firstname, lastname, urgency, description, email, domain, `date submitted`, closed, pcid, stateid FROM `craigk_ticket` . `Tickets` WHERE active != 1";
     }
     $result = $dbh->query($sql);
+    
+    $dbh = null;
 ?>
 
 <head>
@@ -63,11 +65,16 @@
     <form action="#" method="POST" id="formToggle">
 	    <?php if($_POST['toggler'] == ''){
             echo "<input type='radio' name='toggler' id ='toggleClosed' value='toggle' checked></input>";
-            ?> <h3><?php echo "You are now viewing open tickets"?> </h3> <br> <?php;
+            ?>
+	    <h3>
+	    <?php echo "You are now viewing open tickets"; ?> </h3> <br>
+	    <?php;
             echo "<input type='submit' value='Show Closed' class = 'btn btn-default'>";
         }elseif($_POST['toggler'] == 'toggle'){
             echo "<input type='radio' name='toggler' id = 'toggleOpen' value='' checked></input>";
-            ?> <h3><?php echo "You are now viewing closed tickets"?> </h3> <br> <?php;
+            ?>
+	    <h3>
+	    <?php echo "You are now viewing closed tickets"; ?> </h3> <br> <?php;
             echo "<input type='submit' value='Show Open' class = 'btn btn-default'>";
         } ?>
 	</form>
@@ -107,13 +114,14 @@
             <?php } ?>
         </tbody>
     </table>    
-    </div>
+
     <?php } ?>
     <div class="jumbotron">   
-		<div id="ticketInfo">
-        <!--<h3>List of tickets that have been submitted:</h3>-->
-	<button type="button" id="logout" class="btn btn-default">Log Out</button>
-        <h3>Submit a ticket <a href="ticket.php">here</a></h3>
+	<div id="ticketInfo">
+	    <!--<h3>List of tickets that have been submitted:</h3>-->
+	    <button type="button" id="logout" class="btn btn-default">Log Out</button>
+	    <h3>Submit a ticket <a href="ticket.php">here</a></h3>
+	</div>
     </div>
 </body>
 <script>
@@ -134,6 +142,6 @@
         $(".tr").click(function(){
             var idnow = $(this).attr('id');
             window.location.href = "view.php?ticketid=".concat(idnow);
-        })
+        });
 
 </script>

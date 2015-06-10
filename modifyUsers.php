@@ -1,6 +1,8 @@
 <?php
     session_start();
     require 'dbts.php';
+    
+    $id=$_SESSION['identity'];
     //redirect if you do not have the credentials
     /*if($_SESSION['accessLevel'] != '2'){
         header("Location: login.php");
@@ -14,9 +16,49 @@
             echo $e->getMessage();
     }
     
-    $sql = "";
+    $sqlid = "SELECT username from `craigk_ticket` . `login`";
+    $techs = $dbh->query($sqlid);
+    $techs2 = $dbh->query($sqlid);
+    $techs3 = $dbh->query($sqlid);
     
-    $result = $dbh->query($sql);
+    if($_POST['option'] == 'Add'){
+        $newUser = $_POST['newUser'];
+        $newPassword = $_POST['newPassword'];
+        $accessLevel = $_POST['accessLevel'];
+        $sqlAdd = "INSERT INTO `craigk_ticket`.`login` (username, password, accesslevel) VALUES (:userName,:passWord,:accessLevel)";
+        $statementAdd = $dbh->prepare($sqlAdd);
+        $statementAdd->bindParam(':userName', $newUser, PDO::PARAM_STR);
+        $statementAdd->bindParam(':passWord', $newPassword, PDO::PARAM_STR);
+        $statementAdd->bindParam(':accessLevel', $accessLevel, PDO::PARAM_INT);
+        $statementAdd->execute();
+        
+    }elseif($_POST['option'] == 'Remove'){
+        $selectUserRemove = $_POST['selectUserRemove'];
+        $sqlRemove = "DELETE FROM `craigk_ticket`.`login` WHERE username=:username";
+        $statementRemove = $dbh->prepare($sqlUpdate);
+        $statementRemove->bindParam(':userName', $selectUserRemove, PDO::PARAM_STR);
+        $statementRemove->execute();
+        
+    }elseif($_POST['option'] == 'ChangePermission'){
+        $selectUserChange = $_POST['selectUserChange'];
+        $accessLevel = $_POST['accessLevel'];
+        $sqlPermissions = "UPDATE `craigk_ticket`.`Tickets` SET accesslevel=:accessLevel WHERE username=:userName";
+        $statementPermissions = $dbh->prepare($sqlPermissions);
+        $statementPermissions->bindParam(':userName', $selectUserChange, PDO::PARAM_STR);
+        $statementPermissions->bindParam(':accessLevel', $accessLevel, PDO::PARAM_STR);
+        $statementPermissions->execute();
+        
+    }elseif($_POST['option'] == 'ChangePassword'){
+        $selectUserPassword = $_POST['selectUserPassword'];
+        $updatePassword = $_POST['updatePassword'];
+        $sqlPassword = "UPDATE `craigk_ticket`.`Tickets` SET password=:password WHERE username=:userName";
+        $statementPassword = $dbh->prepare($sqlPassword);
+        $statementPassword->bindParam(':userName', $selectUserPassword, PDO::PARAM_STR);
+        $statementPassword->bindParam(':password', $updatePassword, PDO::PARAM_STR);
+        $statementPassword->execute();
+        
+    }
+
 ?>
 <script>
     <link rel="stylesheet" href="css/style.css">
@@ -50,14 +92,56 @@
 
 <body>
     
-    <form>
+    <form action='#' method='post'>
         <label><input type='radio' name='option' id='Add'>Add</label>
         <label><input type='radio' name='option' id='Remove'>Remove</label>
-        <label><input type='radio' name='option' id='Change'>Change</label>
+        <label><input type='radio' name='option' id='ChangePermission'>Change permissions</label>
+        <label><input type='radio' name='option' id='ChangePassword'>Change Password</label>
         
-        <div id='fieldAdd'>Enter the email of the new user:<input type='text' name='add' ></div>
-        <div id='fieldRemove'>Enter the user to be removed:<input type='text' name='remove'></div>
-        <div id='fieldChange'>Select the user to be updated:<input type='text' name='change'></div>
+        <div id='fieldAdd'>
+            Enter new users username:<input type='text' name='newUser'>
+            Enter new users password:<input type='text' name='newPassword'>
+            <select name='accessLevel' class='form-control'>
+                <option value="1">technician</option>
+                <option value="2">administrator</option>
+            </select>
+        </div>
+        <div id='fieldChange'>
+            <select name='selectUserChange' class='form-control'>
+                <?php
+                    foreach($techs as $row){
+                        echo "<option value='$row[username]'>$row[username]</option>";
+                    }
+                ?>
+            </select>
+            Set privilages to:
+            <select name='accessLevel' class='form-control'>
+                <option value="1">technician</option>
+                <option value="2">administrator</option>
+            </select>
+        </div>
+        <div id='fieldRemove'>
+            Select the user to be removed:
+            <select name='selectUserRemove' class='form-control'>
+                <?php
+                    foreach($techs2 as $row){
+                        echo "<option value='$row[username]'>$row[username]</option>";
+                    }
+                ?>
+            </select>
+        </div>
+        <div id='fieldPassword'>
+            Select the users to change their password:
+            <select name='selectUserPassword' class='form-control'>
+                <?php
+                    foreach($techs2 as $row){
+                        echo "<option value='$row[username]'>$row[username]</option>";
+                    }
+                ?>
+            </select>
+            Enter the users new password:<input type='text' name='updatePassword'>
+        </div>
+        <input type='submit' name='submit' value='submit' class="btn btn-default">
     </form>
     
 </body>
@@ -67,22 +151,32 @@
         $('#fieldAdd').hide();
         $('#fieldRemove').hide();
         $('#fieldChange').hide();
+        $('#fieldPassword').hide();
     });
     
     $("#Add").click(function(){
         $("#fieldAdd").show();
         $("#fieldRemove").hide();
         $("#fieldChange").hide();
+        $('#fieldPassword').hide();
     });
     $("#Remove").click(function(){
         $("#fieldRemove").show();
         $("#fieldAdd").hide();
         $("#fieldChange").hide();
+        $('#fieldPassword').hide();
     });
-    $("#Change").click(function(){
+    $("#ChangePermission").click(function(){
         $("#fieldChange").show();
         $('#fieldAdd').hide();
         $('#fieldRemove').hide();
+        $('#fieldPassword').hide();
+    });
+    $("#ChangePassword").click(function(){
+        $("#fieldChange").hide();
+        $('#fieldAdd').hide();
+        $('#fieldRemove').hide();
+        $('#fieldPassword').show();
     });
     
 </script>
