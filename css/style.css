@@ -55,6 +55,10 @@ thead {
     text-align:center;
 }
 
+#craigk_ticket {
+     cursor: pointer; cursor: hand;
+}
+
 /*
  *color coding isn't being used
  *
