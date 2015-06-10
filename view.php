@@ -225,7 +225,7 @@
                           }
                     ?>'><button class="btn btn-default" style='float: left;'>Return</button></a>
            <br><br>
-	           <script>
+	         <script>
 				//The confirmation box
 				function closeConfirm(){
 					var Confirmed = confirm ("Do you want to CLOSE this ticket?");
@@ -235,8 +235,8 @@
                                                     $to = $email;
                                                     $tech = 'akrause3@mail.greenriver.edu';
                                                     $closeSubject = "Ticket Closed";
-                                                    $closeSubmitter = "Your ticket $tid has been closed";
-                                                    $closeTech = "Hey Tech, the ticket $tid has been closed";
+                                                    $closeSubmitter = "Your ticket has been closed. \nDescription: $des\nTicket ID: $tid";
+                                                    $closeTech = "A ticket has been closed.\nDescription: $des\nTicket ID: $tid";
                                                     mail($to, $closeSubject, $closeSubmitter);
                                                     mail($tech, $closeSubject, $closeTech);
                                                 ?>

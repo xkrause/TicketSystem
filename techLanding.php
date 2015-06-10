@@ -134,6 +134,6 @@
         $(".tr").click(function(){
             var idnow = $(this).attr('id');
             window.location.href = "view.php?ticketid=".concat(idnow);
-        })
+        });
 
 </script>
