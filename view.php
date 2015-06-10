@@ -266,7 +266,6 @@
                                     return false;
                                 }
                             }
-                                
 
 		//The confirmation box
 		function submissionConfirm() {
