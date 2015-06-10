@@ -33,6 +33,43 @@
     $sql2 = "UPDATE `craigk_ticket`.`Tickets` SET closed='$dateFormatted' WHERE ticketid='$id'";
     $dbh->query($sql2);
     
+    //sql statment to access the information about the ticket
+    $sqlemail = "SELECT `Tickets`.ticketid, `Tickets`.firstname, `Tickets`.lastname, `Tickets`.urgency, `Tickets`.description, `Tickets`.email, `Tickets`.domain, `Tickets`.`date submitted`, `notes`.note, `Tickets`.pcid, `Tickets`.stateid, `Tickets`.catagories, `Tickets`.assignedtech, `Tickets`.active
+            FROM `craigk_ticket` . `Tickets`
+            LEFT JOIN `craigk_ticket` . `notes`
+            ON `Tickets`.ticketid = `notes`.`ticketid`
+            WHERE Tickets.ticketid=$id";
+    
+    //save the result of the above query after it is run to be called later on page            
+    $result = $dbh->query($sqlemail);
+    
+    //save various ticket info for use throughout the page
+    foreach($result as $row) {
+        $fname=$row['firstname'];
+        $lname=$row['lastname'];
+        $tid=$row['ticketid'];
+        $urg=$row['urgency'];
+        $des=$row['description'];
+        $email=$row['email'];
+        $dom=$row['domain'];
+        $date=$row['date submitted'];
+        $notes=$row['note'];
+        $pcid=$row['pcid'];
+        $stid=$row['stateid'];
+        $catagory=$row['catagories'];
+        $technician=$row['assignedtech'];
+        $status=$row['active'];
+    }
+    
+    //send email notification to ticket submitter that ticket is closed
+    $to = $email;
+    $tech = 'akrause3@mail.greenriver.edu';
+    $closeSubject = "Ticket Closed";
+    $closeSubmitter = "Your ticket has been closed. \nDescription: $des\nTicket ID: $tid";
+    $closeTech = "A ticket has been closed.\nDescription: $des\nTicket ID: $tid";
+    mail($to, $closeSubject, $closeSubmitter);
+    mail($tech, $closeSubject, $closeTech);
+    
     //redirect back to the users page after ticket is closed
     if($_SESSION['accessLevel']=='1'){
         $previous_page="techLanding.php";

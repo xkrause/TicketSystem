@@ -228,22 +228,16 @@
 	         <script>
 				//The confirmation box
 				function closeConfirm(){
-					var Confirmed = confirm ("Do you want to CLOSE this ticket?");
+					var Confirmed = confirm ("Are you sure you want to CLOSE this ticket?");
 					if (Confirmed == true) {
-					    var ConfirmedCeption = alert ("Case closed! \nPress Return to go back.");
-						<?php
-                                                    $to = $email;
-                                                    $tech = 'akrause3@mail.greenriver.edu';
-                                                    $closeSubject = "Ticket Closed";
-                                                    $closeSubmitter = "Your ticket has been closed. \nDescription: $des\nTicket ID: $tid";
-                                                    $closeTech = "A ticket has been closed.\nDescription: $des\nTicket ID: $tid";
-                                                    mail($to, $closeSubject, $closeSubmitter);
-                                                    mail($tech, $closeSubject, $closeTech);
-                                                ?>
+					    var ConfirmedCeption = alert ("Ticket Closed!");
+						
                                                 window.location.replace("closeTicket.php?ticketid=<?php echo $id; ?>");
                                             return true;
 					}				 
                                         else if(Confirmed == false){
+                                            return false;
+                                        }else{
                                             return false;
                                         }
 				}
@@ -253,7 +247,9 @@
                                     if (reopen == true) {
                                         window.location.replace("openTicket.php?ticketid=<?php echo $id; ?>");
                                         return true;
-                                    }else if(reopen = false){
+                                    }else if(reopen == false){
+                                        return false;
+                                    }else{
                                         return false;
                                     }
                                 }
