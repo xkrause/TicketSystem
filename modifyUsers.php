@@ -88,6 +88,10 @@
     <link type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js">
     
     <link type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.js">
+	
+	<style type="text/css"> 
+		input[type="radio"]{margin: 10px 0};} 
+	</style>
 </head>
 
 <body>
@@ -95,23 +99,28 @@
     <div class='jumbotron'>
         <form action='#' method='post'>
             <h3>Choose an action</h3>
-            <label><input type='radio' name='option' value='Add' id='Add' >Add New User</label><br>
-            <label><input type='radio' name='option' value='Remove' id='Remove' >Remove a User</label><br>
-            <label><input type='radio' name='option' value='ChangePermission' id='ChangePermission' >Change permissions</label><br>
-            <label><input type='radio' name='option' value='ChangePassword' id='ChangePassword' >Change Password</label><br>
+            <label><input type='radio' name='option' value='Add' id='Add' > Add New User</label><br>
+            <label><input type='radio' name='option' value='Remove' id='Remove' > Remove a User</label><br>
+            <label><input type='radio' name='option' value='ChangePermission' id='ChangePermission' > Change permissions</label><br>
+            <label><input type='radio' name='option' value='ChangePassword' id='ChangePassword' > Change Password</label><br>
             <br>
             <div id='fieldAdd' class="form-group">
-                Enter new users username:<input type='text' name='newUser' class="form-control">
-                Enter new users password:<i>(password must contain <b>AT LEAST</b> one capital letter, one lowercase letter, one number, and one special character <b>AND</b> be no longet or shorter than 8 characters)<input type='text' name='newPassword' class="form-control">
+                Enter new users username:<input type='text' name='newUser' class="form-control" required pattern = "[^@]+@greenriver.edu"
+					title="Please use an email with greenriver.edu domain.">
+                Enter new users password:
+				<i>(password must contain <b>AT LEAST</b> one capital letter, one lowercase letter, one number, and one special character <b>AND</b> be no longet or shorter than 8 characters)
+				<input type='text' name='newPassword' class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}">
                 Select their permissions:
-                <select name='accessLevel' class='form-control'>
-                    <option value='1'>technician</option>
-                    <option value='2'>administrator</option>
+                <select name='accessLevel' class='form-control' required>
+				    <option selected="selected" disabled="disabled" value="">- Permission - </option>
+                    <option value='1'>Technician</option>
+                    <option value='2'>Administrator</option>
                 </select>
             </div>
             <div id='fieldChange' class="form-group">
                 Select a user to change:
-                <select name='selectUserChange' class='form-control'>
+                <select name='selectUserChange' class='form-control' required>
+					<option selected="selected" disabled="disabled" value="">- Change User - </option>
                     <?php
                         foreach($techs as $row){
                             echo "<option value='$row[username]'>$row[username]</option>";
@@ -119,14 +128,16 @@
                     ?>
                 </select>
                 Set privilages to:
-                <select name='accessLevel' class='form-control'>
-                    <option value="1">technician</option>
-                    <option value="2">administrator</option>
+                <select name='accessLevel' class='form-control' required>
+					<option selected="selected" disabled="disabled" value="">- Permission - </option>
+                    <option value="1">Technician</option>
+                    <option value="2">Administrator</option>
                 </select>
             </div>
             <div id='fieldRemove' class="form-group">
                 Select the user to be removed:
-                <select name='selectUserRemove' class='form-control'>
+                <select name='selectUserRemove' class='form-control'  required>
+					<option selected="selected" disabled="disabled" value="">- Remove User - </option>
                     <?php
                         foreach($techs2 as $row){
                             echo "<option value='$row[username]'>$row[username]</option>";
@@ -136,14 +147,16 @@
             </div>
             <div id='fieldPassword' class="form-group">
                 Select the users to change their password:
-                <select name='selectUserPassword' class='form-control'>
+                <select name='selectUserPassword' class='form-control' required>
+					<option selected="selected" disabled="disabled" value="">- Select User - </option>
                     <?php
                         foreach($techs3 as $row){
                             echo "<option value='$row[username]'>$row[username]</option>";
                         }
                     ?>
                 </select>
-                Enter the users new password:<i>(password must contain <b>AT LEAST</b> one capital letter, one lowercase letter, one number, and one special character <b>AND</b> be no longet or shorter than 8 characters)</i><input type='text' name='updatePassword' class="form-control">
+                Enter the users new password:<i>(password must contain <b>AT LEAST</b> one capital letter, one lowercase letter, one number, and one special character <b>AND</b> be no longet or shorter than 8 characters)</i>
+				<input type='text' name='updatePassword' class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}">
             </div>
             <br>
             <input type='submit' name='submit' value='submit' class="btn btn-default">

@@ -9,7 +9,7 @@
     if(isset($_POST['submit']))
     {
         
-        emailCheck();
+    emailCheck();
 	passCheck();
         //database connection
         try {
@@ -76,6 +76,7 @@
 	(?=\S*[\W]) = and at least a special character (non-word characters)
 	$ = end of the string
 			*/
+	
     // Email check function
     function emailCheck() {
 	if(!preg_match_all("/^\"?[\w-_\.]*\"?@greenriver.edu$/", $userCheck)){
