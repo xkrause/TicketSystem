@@ -155,10 +155,10 @@
             <form method="post" action="#" onsubmit="return submissionConfirm() & stripHTML(this.fname, this.lname, this.description, this.email, this.urgency, this.domain)">
                 <!--putting the form into a div for styling purposes-->
                 <div id="ticketInfo">
-                    <input type="text" required placeholder="First Name" name="fname" class="form-control" 
+                    <input type="text" required placeholder="First Name" name='fname' class="form-control" 
 						title="First name can only contain characters."></input>
                     <br>
-                    <input type="text" required placeholder="Last Name" name="lname" class="form-control" 
+                    <input type="text" required placeholder="Last Name" name='lname' class="form-control" 
 						title="Last name can only contain characters."></input>
                     <br>
                     <textarea name="description" required placeholder="Please describe the problem. 500 character limit." class="form-control"></textarea>
@@ -212,10 +212,11 @@
 		}
 		
 		 // Strip HTML Tags (form) script- By JavaScriptKit.com (http://www.javascriptkit.com)    
-            function stripHTML(){
-            var re= /<\S[^><]*>/g
-            for (i=0; i<arguments.length; i++)
-            arguments[i].value=arguments[i].value.replace(re, "")
+			function stripHTML(){
+				var re= /<\S[^><]*>/g
+				for (i=0; i<arguments.length; i++)
+				arguments[i].value=arguments[i].value.replace(re, "")
+			}
 	    </script>
         </div>
     </div>
