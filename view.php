@@ -227,7 +227,7 @@
            <br><br>
 	         <script>
 				//The confirmation box
-				function closeConfirm(){
+                                    function closeConfirm(){
 					var Confirmed = confirm ("Do you want to CLOSE this ticket?");
 					if (Confirmed == true) {
 					    var ConfirmedCeption = alert ("Case closed! \nPress Return to go back.");
@@ -247,6 +247,7 @@
                                             return false;
                                         }
 				}
+				
                                 
                                 function openConfirm(){
                                     var reopen = confirm("Do you want to REOPEN this ticket?");
